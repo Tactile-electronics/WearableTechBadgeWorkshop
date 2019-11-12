@@ -1,6 +1,15 @@
 ## Wearable Tech Badge Workshop
 
-Learn basics of wearable technology with microbits, sensors, Processing, simple electronics 
+Learn basics of wearable technology with microbits, sensors, Processing, simple electronics
+
+
+## 555 timer
+
+Simple timing chip
+
+<img src="images/TimerLayout.gif">
+
+[555 Timer Circuit Resources](http://www.555-timer-circuits.com/#circuits)
 
 
 
