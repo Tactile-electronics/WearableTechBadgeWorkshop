@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Electronics Club - 555 Monostable - operation, time period, power-on reset, trigger, edge trigger</title>
+<link rel="stylesheet" type="text/css" href="ecstyle.css" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" >
+<meta charset="UTF-8" />
+<meta name="description" content="Electronics Club - 555 Monostable" />
+<meta name="keywords" content="electronics beginner 555 timer monostable timing circuit single pulse" />
+<meta name="author" content="John Hewes" />
+<meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+<div id="body">
+<div id="header"><a id="menulink" href="menu.htm">Menu</a>
+<a id="homelink" href="https://electronicsclub.info/">Electronics Club</a>
+<span class="nav">
+<a class="navlink" href="components.htm">Components</a>
+<a class="navlink" href="study.htm">Study</a>
+</span>
+<a class="navlink" href="555timer.htm">555</a>
+<a class="navlink" href="projects.htm">Projects</a>
+<a class="navlink" href="construction.htm">Construction</a>
+<a class="navlink" href="soldering.htm">Solder</a>
+<a class="navlink" href="books.htm">Books</a>
+<a class="navlink" href="faq.htm">FAQ</a>
+</div>
+<div id="topofpage"></div>
+
+<a href="https://electronicsclub.info/"><img class="logo" src="logos/eclogo.gif" alt="Electronics Club" width="125" height="62"></a>
+
+<h1>555 Monostable</h1>
+<div class="clearboth"></div>
+<p class="links"><a href="#timeperiod">Time period</a>&nbsp;| <a href="#operation">Operation</a>&nbsp;|
+<a href="#poweron">Power&nbsp;on&nbsp;reset/trigger</a>&nbsp;| <a href="#edgetrigger">Edge&nbsp;trigger</a></p>
+
+<a href="https://www.rapidonline.com/texas-instruments-ne555p-bipolar-single-timer-82-0336">
+<img class="narrow" src="images/555horizontal.gif" alt="555 timer IC" width="74" height="62"></a>
+<p>The <a href="555timer.htm">555&nbsp;timer</a> IC can be used with a few simple
+components to build a monostable circuit which produces a single output pulse when triggered.
+It is called a <em>mono</em>stable because it is stable in just <em>one</em> state: 'output low'.
+The 'output high' state is temporary.</p>
+<div class="clearboth"></div>
+
+<div class="wrap300"><div class="box300">
+<img src="images/555monotime.gif" alt="555 monostable output" width="284" height="54">
+<p>555 monostable output, a single pulse</p>
+</div></div>
+<div class="wrap300"><div class="box300">
+<img src="images/555monostable.gif" alt="555 monostable circuit" width="296" height="212">
+<p><small>555 monostable circuit with manual trigger</small></p>
+</div></div>
+
+<p>Recommended book: <a href="https://www.bookdepository.com/Integrated-Circuit-555-Projects/9780859340472">IC&nbsp;555&nbsp;Projects</a></p>
+
+<div id="timeperiod" class="clearboth"></div><hr />
+
+<h2>Monostable Time Period</h2>
+<div class="text">
+<p>The duration of the pulse is called the <strong>time period</strong> (T) and this is determined by
+resistor R1 and capacitor C1:</p>
+<table class="equation">
+<tr><td><strong>Time period, T&nbsp;=&nbsp;1.1&nbsp;&times;&nbsp;R1&nbsp;&times;&nbsp;C1</strong></td></tr>
+</table>
+
+<p>T&nbsp;&nbsp; = time period in seconds (s)
+<br />R1 = resistance in ohms (<img src="images/ohm.gif" alt="ohm" width="12" height="11">)
+<br />C1 = capacitance in farads (F)
+<br /><em>The maximum reliable time period is about 10&nbsp;minutes.</em></p>
+<p><strong>Why 1.1?</strong> The capacitor charges to <sup>2</sup>/<sub>3</sub> = 67% so it
+is a bit longer than the <a href="capacitance.htm#timeconstant">time&nbsp;constant</a>
+(R1&nbsp;&times;&nbsp;C1) which is the time taken to charge to 63%.</p>
+</div>
+<div class="right">
+<div class="eim">
+<p>There is more information about 555 timers and their circuits on the
+<a href="http://www.eleinmec.com/">Electronics&nbsp;in&nbsp;Meccano</a> website.</p>
+</div>
+</div>
+<div class="clearboth"></div>
+
+<h3>Choosing R1 and C1</h3>
+<p><strong>Choose C1 first</strong> because there are relatively few values available.</p>
+<p><strong>Choose R1</strong> to give the time period you need.
+R1 should be in the range 1k<img src="images/ohm.gif" alt="ohm" width="12" height="11">
+to 1M<img src="images/ohm.gif" alt="ohm" width="12" height="11">, so use a fixed resistor of at
+least 1k<img src="images/ohm.gif" alt="ohm" width="12" height="11"> in series if R1 is variable.</p>
+<p><strong>Beware</strong> that electrolytic capacitors do not have accurate values (errors of least 20% are common)
+and they tend to leak charge which increases the time period (especially if you are using a high value resistor).
+<br /><small><em>For example the <a href="p_timer.htm">Timer&nbsp;Project</a> should have a maximum time period
+of 266s (about 4&frac12; minutes), but many electrolytic capacitors extend this to about 10 minutes!</em></small></p>
+
+<div class="clearboth"></div><hr />
+<div class="flexad">
+<!-- Google electronicstopflex -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- electronicstopflex -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3404237790618599"
+     data-ad-slot="1019806465"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div id="operation" class="clearboth"></div><hr />
+
+<h2>Monostable operation</h2>
+<div class="fullwidth">
+<img class="fit" src="images/555monostableop.gif" alt="555 monostable operation" width="456" height="270">
+</div>
+<p>The timing period is triggered (started) when the <strong>trigger</strong> input (pin 2) is less than
+<sup>1</sup>/<sub>3</sub>&nbsp;Vs, this makes the <strong>output</strong> high (+Vs) and the capacitor C1 starts
+to charge through resistor R1. Once the time period has started further trigger pulses are ignored.</p>
+<p>The <strong>threshold</strong> input (pin 6) monitors the voltage across C1 and when this reaches
+<sup>2</sup>/<sub>3</sub>&nbsp;Vs the time period is over and the <strong>output</strong> becomes low.
+At the same time <strong>discharge</strong> (pin 7) is connected internally to 0V, discharging the
+capacitor ready for the next trigger.</p>
+<p>The <strong>reset</strong> input (pin 4) overrides all other inputs and the timing may be cancelled
+at any time by connecting reset to 0V, this instantly makes the output low and discharges the
+capacitor. If the reset function is not required the reset pin should be connected to +Vs directly
+with wire or with a resistor of about 10k<img src="images/ohm.gif" alt="ohm" width="12" height="11">
+(the value isn't critical).</p>
+
+<div class="clearboth"></div><hr />
+<div class="flexad">
+<!-- Google electronicsflex -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- electronicsflex -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3404237790618599"
+     data-ad-slot="2063396069"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div id="poweron" class="clearboth"></div><hr />
+
+<h2>Power-on reset or trigger</h2>
+<img class="narrow" src="images/555poweron.gif" alt="power-on reset or trigger circuit" width="136" height="138">
+<p>It may be useful to ensure that a monostable circuit is reset or triggered automatically when
+the power supply is connected or switched on. This is achieved by using a capacitor instead of
+(or in addition to) a push switch as shown in the diagram.</p>
+<p>The capacitor takes a short time to charge, briefly holding the input close to 0V when the
+circuit is switched on. A switch may be connected in parallel with the capacitor if manual
+operation is also required.</p>
+<p>This arrangement is used for the trigger in the <a href="p_timer.htm">Timer&nbsp;Project</a>.</p>
+
+<div id="edgetrigger" class="clearboth"></div><hr />
+
+<h2>Edge-triggering</h2>
+<img class="narrow" src="images/555edgetrigger.gif" alt="edge-trigger circuit" width="154" height="152">
+<p>If the trigger input is still less than <sup>1</sup>/<sub>3</sub>&nbsp;Vs at the end of the time period
+the output will remain high until the trigger is greater than <sup>1</sup>/<sub>3</sub>&nbsp;Vs. This
+situation can occur if the input signal is from an on-off switch or sensor.</p>
+<p>The monostable can be made <strong>edge triggered</strong>, responding only to <strong>changes</strong>
+of an input signal, by connecting the trigger signal through a capacitor to the trigger input.
+The capacitor passes sudden changes (AC) but blocks a constant (DC) signal. For further information
+please see the page on <a href="capacitance.htm#coupling">capacitance</a>.
+The circuit is '<em>negative edge triggered</em>' because it responds to a sudden fall in the input signal.</p>
+<p>The resistor between the trigger (pin 2) and +Vs ensures that the trigger is normally high (+Vs).</p>
+<hr />
+
+<div class="wrap300">
+<h4>Projects using 555 monostable:</h4>
+<ul class="links">
+<li><a href="p_timer.htm">1-10&nbsp;Minute&nbsp;Timer</a></li>
+<li><a href="p_lock.htm">Electronic&nbsp;'Lock'</a></li>
+<li><a href="p_lightalarm.htm">Light-sensitive&nbsp;Alarm</a></li>
+</ul>
+<p>Rapid Electronics: <a href="https://www.rapidonline.com/texas-instruments-ne555p-bipolar-single-timer-82-0336">NE555 timer</a></p>
+<p>&nbsp;</p>
+<p><strong>Next page:</strong> <a href="555bistable.htm">555 Bistable</a></p>
+<p><strong>Also see:</strong> <a href="555timer.htm">555 Timer</a> | <a href="555astable.htm">Astable</a> |
+<a href="555buffer.htm">Buffer</a></p>
+<p>&nbsp;</p>
+</div>
+
+<div class="wrap300"><div class="ad320">
+<!-- Google 555timer 300x250 -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 555timer -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-3404237790618599"
+     data-ad-slot="3763762460"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div></div>
+
+<div id="footer">
+<h4>Privacy Policy &amp; Cookies</h4>
+<p><small><strong>This website does not collect personal information.</strong>
+If you send an email your email address and any personal information will be
+used only to respond to your message, it will not be given to anyone else.
+<strong>This website displays advertisements.</strong> If you click on
+these the advertiser may know that you came from this site and I may be rewarded.
+No personal information is passed to advertisers.
+<br /><strong>Cookies:</strong> this website does not use cookies itself but it does use
+Google AdSense which uses cookies to serve advertisements based on your use of websites
+(including this one) as explained by <a class="cyan" href="http://www.google.com/policies/technologies/ads/">Google</a>.
+To learn how to delete and control cookies from your browser please
+visit <a class="cyan" href="http://www.aboutcookies.org/">AboutCookies.org</a>.
+</small></p>
+<p id="copyright">electronicsclub.info &copy; John Hewes 2019
+<br /><br />Website hosted by <a class="cyan" href="https://my.tsohost.com/aff.php?aff1608">Tsohost</a></p>
+</div> <!-- end footer -->
+<!-- Start of StatCounter Code for EC -->
+<script type="text/javascript">
+var sc_project=233184; 
+var sc_invisible=1; 
+var sc_security="1659c474"; 
+var sc_client_storage="disabled"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="site stats"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter" src="//c.statcounter.com/233184/0/1659c474/1/"
+alt="site stats"></a></div></noscript>
+<!-- End of StatCounter Code -->
+</div> <!-- end body -->
+<script src="https://www.dwin2.com/pub.170429.min.js"></script>
+</body>
+</html>
+
