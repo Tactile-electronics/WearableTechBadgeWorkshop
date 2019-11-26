@@ -112,11 +112,3 @@ Finally we assemble everything using a textile pocket to enclose electronics
  * We can also look in detail under the microscope at the physical nature of the components, and potentially make PDMS microfluidic moulds from the markings and micro structures of the components and textile materials.
 
 
-### Previous Builds
-
-<img src="images/555Flasher2.jpg" height="250">
-<img src="images/555flashersmall.gif" height="250">
-<img src="images/miniBreadboard.svg" height="250">
-
-
-Remade the flasher circuit using the [555 Timer circuits schematic](http://www.555-timer-circuits.com/flashing-led.html) but with a space for variable resistors
