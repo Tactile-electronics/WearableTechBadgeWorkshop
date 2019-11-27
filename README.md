@@ -26,9 +26,9 @@ Connect Microbit and sensor to P5.js and experiment with code
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-electronics-green.svg?longCache=true&style=plastic)
 
-Here we use [Microbit](https://microbit.org/code/) and [OpenProcessing](https://openprocessing.org) and [p5.js](https://p5js.org/) to learn basic principles of how to manipulate analog sensor data with code, in this case
+Here we use [Microbit](https://microbit.org/code/) and [p5.js](https://p5js.org/) to learn basic principles of how to manipulate analog sensor data with code and share on platforms like [OpenProcessing](https://openprocessing.org) and [Glitch](https://glitch.com)
 
- * We will borrow Laura Pullig's [What DoES Health Look Like (WDHLL)](https://github.com/DoESLiverpool/what-does-health-look-like/) to learn and experience coding for data visualisation.
+ * We will borrow the course materials from the [What DoES Health Look Like (WDHLL)](https://github.com/DoESLiverpool/what-does-health-look-like/) workshop made by [@Laura_pullig](https://twitter.com/Laura_pullig) & [@Zarino](https://twitter.com/zarino) to learn and experience coding for data visualisation.
  * We'll start with an introduction to Microbits as it's a good way in to code for newcomers.
  * We'll introduce peope to P5.js, a javascript implementation of the popular Processing programming language.
   * Use [jackie1050's & zarinos test openprocessing sketches](https://www.openprocessing.org/user/139031) and experiment with P5.js.
@@ -60,9 +60,9 @@ Find out more on this [555 Timer Circuit website](http://www.555-timer-circuits.
 
 #### Simple Flasher
 
-<img src="images/Multi-Timing-555-Flasher.jpg" height="250">
-<img src="images/555-Circuit-Schem-Fritzing.png" height="250">
-<img src="images/555-Circuit-Breadboard-Fritzing.png" height="250">
+<img src="images/Multi-Timing-555-Flasher.jpg" width="400">
+<img src="images/555-Circuit-Schem-Fritzing.png" width="400">
+<img src="images/555-Circuit-Breadboard-Fritzing.png" width="400">
 
 We've made a circuit with an array of capacitors and resistors so you can experiment with the timings
 
@@ -115,9 +115,9 @@ Conductive Yarn/Rubber/Pressure Sensor|||
 
 #### Traffic light
 
-<img src="images/traffic_light_breadboard.jpg" width="300">
-<img src="images/TrafficLightsSchem.gif" width="300">
-<img src="images/bio_illuminator.gif" width="600">
+<img src="images/traffic_light_breadboard.jpg" width="400">
+<img src="images/TrafficLightsSchem.gif" width="400">
+<img src="images/bio_illuminator.gif" width="400">
 
 Component|No.|Cost|Source|Produced|Notes|SubTotal
 --|--|--|--|--|--|--
@@ -160,6 +160,11 @@ is the general format.
 Then press enter and you'll see the python prompt. You are now connected to your ESP8266!
 
 ### Micropython Command Walkthrough
+
+![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-screen-blue.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
 
 Flash LEDs in response to our sensors
 
@@ -241,8 +246,14 @@ while True:
     time.sleep_ms(stretch)
 ```
 
+#### Components
 
-
+Component|No.|Source|Produced|Notes
+--|--|--|--|--
+Microusb data cable|1|||
+Jumper Wires|4||
+Resistor 4.7k Ohm|1||China
+Conductive Yarn/Rubber/Pressure Sensor|||
 
 
 ### Session 4
@@ -250,11 +261,10 @@ Make our wearable
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-microscopy-black.svg?longCache=true&style=plastic)
 
 Finally we assemble everything using a textile pocket to enclose electronics
 
- * Enclose the `555`/ATTiny/ESP circuit in a customisable fabric template
+ * Enclose the ESP circuit in a customisable fabric template
 
 
 
