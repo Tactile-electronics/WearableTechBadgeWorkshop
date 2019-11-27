@@ -265,15 +265,3 @@ Make our wearable
 Finally we assemble everything using a textile pocket to enclose electronics
 
  * Enclose the ESP circuit in a customisable fabric template
-
-
-
-## Options
-
-We are considering a couple of options to react to the sensors we make above and control LEDs and buzzers in response:
-
-Method|Pros|Cons
-|---|---|---
-555 Circuits|No Installing of software<br>Cheap<br>Learn electronics better|Hard to follow diagrams, messy breadboards
-ATTiny|Lightweight cheap, similar to Arduino programming|Needs software
-ESP24/ESP32|Powerful, leads to other things<br>IoT workhorse|More expensive<br>Difficult to setup and use micropython?<br>Bewildering array of options<br>too much python?
