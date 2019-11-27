@@ -202,7 +202,7 @@ Ok now lets read one of our sensors. Wire up following the diagram above.
 The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will need the ADC class to make it work
 
 `from machine import ADC`
-
+`adc = ADC(0)`
 `adc.read()`
 
 Will return a value. Ok lets get it to read the values until we press `ctrl +c`. We will use a simple loop using `while`
