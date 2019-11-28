@@ -2,6 +2,23 @@
 
 Learn basics of wearable technology with microbits, sensors, Processing, simple electronics
 
+This is a workshop in progress, open to help from @jackie1050 and @Laura_pullig
+
+### Structure
+I think now the structure of the workshop could be:
+
+ 1. Sensor making & Wearable prototyping with Microbit and Micropython
+ 1. LED flashing with timer chips
+ 1. LED flashing with ESP8266 and MicroPython
+ 1. Wearable constructing
+
+**OR**
+
+ 1. Sensor making & Wearable prototyping with Microbit and Micropython
+ 1. LED flashing with ESP8266 and MicroPython
+ 1. Wearable prototyping with ESP8266 and MicroPython
+ 1. Wearable fabrication
+
 ### Session 1
 
 <!--<img src="https://domesticscience.org.uk/criticalkits/images/WearableBioLEDKit1.jpg" width="600">-->
@@ -17,9 +34,12 @@ This first step develops the basics of a pressure sensor; we can refer to more c
  * Follow the [WDHLL pressure sensor build](https://github.com/DoESLiverpool/what-does-health-look-like/tree/master/pressure-sensor)
  * Decide on where and how to wear it and connect it the badge
 
-### Session 2
+### Session 2a
 
 Connect Microbit and sensor to P5.js and experiment with code
+> I've some reservations about this bit now. Mainly it's jumping across two programming languages which doesn't make much sense in one workshop that might put people off or confuse them. It made sense for WDHLL but we stuck to blocks and JavaScript with microbit. Really the data visualisation should be expressed in the wearable materials, LEDs, motors etc. So I think replacing this with the timer workshop might be a good idea. But just do the simple flasher as an experience for people. Have a look at the [Stucture above](#structure)
+
+
 
 ![Skill Covered](https://img.shields.io/badge/skill-dataVisualisation-yellow.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-JavaScript-blue.svg?longCache=true&style=plastic)
@@ -36,9 +56,11 @@ Here we use [Microbit](https://microbit.org/code/) and [p5.js](https://p5js.org/
 <!--<img src="https://domesticscience.org.uk/criticalkits/images/WearableBioLEDKit2.jpg" width="600">
 -->
 
-### Session 2.5
+### Session 2b
 
 Make a circuit that illuminates LEDs in flashing sequences
+
+> I think we might lose this in favour of an extra prototyping session but can keep here for reference elsewhere [Stucture](#structure)
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-electonics-green.svg?longCache=true&style=plastic)
@@ -131,7 +153,7 @@ Resistor 470 Ohm|1||ShrimpingIt surplus|China
 Resistor 220 Ohm|2||ShrimpingIt surplus|China
 Resistor 100k Ohm|1||ShrimpingIt surplus|China
 
-### Session 3
+### Session 2c
 
 #### Micropython and the ESP8266
 
@@ -246,6 +268,36 @@ while True:
     time.sleep_ms(stretch)
 ```
 
+#### Making Permanent Changes
+
+You need to make a `main.py` file on the board. To do this you need to write your code and copy it into the command line prompt of the ESP
+
+So copy the text from [main.py](main.py).
+Then in your open console for your ESP:
+
+`f = open('main.py', 'w')`
+
+then use **paste mode**: move your cursor to just after the set of 3 quotes (they are essential) and press `ctrl + e` and you will be given a few options: right click paste or shortcut `cmd + v` to paste in your text for the programme. Then finish and call `f.close()` to close and save the file.
+
+```
+f.write("""paste_your_text here""")
+f.close()
+```
+
+Check its there with
+
+`import os`
+and
+`os.listDir()` to check it's there.
+
+There are other methods to upload more complex files you can look at in the future like [ampy](https://github.com/scientifichackers/ampy)
+
+Now reboot, and if your file is correct it will run the `boot.py` script (don't worry about that for now it just sets up the board and python) and then your `main.py` file should run!
+
+We generally prototype code by running it line by line, a bit like having a *conversation* with your board. I like the way that weirdly makes you feel more connected to it and we think it might help you learn.
+
+Then you can write your `main.py` file based on these conversations, have a look at our [`main.py` template](main.py) to see how our 'conversations' we've had here looks as a complete python script. (it is like writing the script of the conversation you've alread had :smile:
+
 #### Components
 
 Component|No.|Source|Produced|Notes
@@ -255,9 +307,19 @@ Jumper Wires|4||
 Resistor 4.7k Ohm|1||China
 Conductive Yarn/Rubber/Pressure Sensor|||
 
+### Session 3
+
+Prototype our wearable. Build on our first prototyping session in Session 1.
+
+Pull together what we learned with LEDs and presssure sensors, then show more
+
+ * **Sensors:** buzzers, piezos, light sensors, accelerometers
+ * **Actuators:** buzzers, piezos, motors, pumps, muscles
+
+And if there's time, communication between wearables.
 
 ### Session 4
-Make our wearable
+Fabricate our wearable
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
