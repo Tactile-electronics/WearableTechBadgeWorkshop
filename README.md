@@ -2,7 +2,7 @@
 
 Learn basics of wearable technology with microbits, sensors, Processing, simple electronics
 
-This is a workshop in progress, open to help from @jackie1050 and @Laura_pullig
+This is a workshop in progress, open to help from @jackie1050 and @Laurapullig
 
 ### Structure
 I think now the structure of the workshop could be:
@@ -155,9 +155,18 @@ Resistor 100k Ohm|1||ShrimpingIt surplus|China
 
 ### Session 2c
 
+![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-screen-blue.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
+
+Flash LEDs in response to our sensors
+
+<img src="images/ESP8266-Schem-Fritzing.png" width="600">
+
 #### Micropython and the ESP8266
 
-We're using the [ESP8266](#) ESP-12 WeMos D1 Mini Development Board which is like a cheap version of a microbit.
+We're using the a few variant breakout boards of the ESP8266 like the WeMos D1 Mini Development Board in the diagram above or the bigger [ESP-12E-CP2102](https://www.ebay.co.uk/itm/Esp8266-Esp-12E-Cp2102-Wifi-Network-Development-Board-Module-For-Node-Mcu-GD/264530529453) variant which is like a cheap version of a microbit.
 
 You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython.org/en/latest/esp8266/tutorial/index.html#micropython-tutorial-for-esp8266) for full details, but we've selected.
 
@@ -183,14 +192,6 @@ Then press enter and you'll see the python prompt. You are now connected to your
 
 ### Micropython Command Walkthrough
 
-![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-screen-blue.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
-
-Flash LEDs in response to our sensors
-
-<img src="images/ESP8266-Schem-Fritzing.png" width="600">
 
 
 In python like we saw earlier, we import the tools we need to do the various things we need, with microbit, most of it is already there.
