@@ -2,7 +2,11 @@
 
 Make a small interactive rechargeable wearable badge over 4 weeks to get you started in the world of wearable technology. Designed to give you an understanding of basic fundamentals in electronics, embroidery and coding in the versatile progamming language micropython to control interactive intimate wearables.  We'll use DIY velostat and conductive yarn sensors, analog timer chips and variants of low cost ESP8266 development boards that can help you deploy all kinds of wearable (and non-wearable) technology.
 
-With this experience you'll be able to prototype wearble tech for art, performance, fashion, product development. It's a chance to share your ideas with peers and meet other members of the DoES Liverpool community
+With this experience you'll be able to prototype wearble tech for art, performance, fashion, product development. It's a chance to share your ideas with peers and meet other members of the DoES Liverpool community.
+
+All materials are provided, with extensive workshop notes and reference and resources plus your own ESP8266 development board and battery pack you can re-use for prototyping your next project.
+
+Under 16s must be accompanied by a parent or guardian, suitable for ages 12 and up.
 
 
 ### Structure
@@ -11,13 +15,6 @@ With this experience you'll be able to prototype wearble tech for art, performan
  1. LED flashing with timer chips
  1. LED flashing with ESP8266 and MicroPython
  1. Wearable constructing
-
-**OR**
-
- 1. Sensor making & Wearable prototyping with Microbit and Micropython
- 1. LED flashing with ESP8266 and MicroPython
- 1. Wearable prototyping with ESP8266 and MicroPython
- 1. Wearable fabrication
 
 ### Session 1
 
@@ -141,7 +138,7 @@ Conductive Yarn/Rubber/Pressure Sensor|||
 ![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
 
-Flash LEDs in response to our sensors
+Flash LEDs in response to our sensors using micropython on ESP8266 
 
 <img src="images/ESP8266-Schem-Fritzing.png" width="600">
 
@@ -149,7 +146,7 @@ Flash LEDs in response to our sensors
 
 <img src="images/ESP8266-Dev-Board-pinout.jpg" width="600">
 
-We're using the a few variant breakout boards of the ESP8266 like the WeMos D1 Mini Development Board in the diagram above or the bigger [ESP-12E-CP2102](https://www.ebay.co.uk/itm/Esp8266-Esp-12E-Cp2102-Wifi-Network-Development-Board-Module-For-Node-Mcu-GD/264530529453) variant which is like a cheap version of a microbit.
+We're using the a few variant breakout boards of the ESP8266 like the WeMos D1 Mini Development Board in the diagram above or the bigger [ESP-12E-CP2102](https://www.ebay.co.uk/itm/Esp8266-Esp-12E-Cp2102-Wifi-Network-Development-Board-Module-For-Node-Mcu-GD/264530529453) variant which you can see above with its `GPIO` pin arrangement. We'll be using these in our workshops and you'll be able to take them home.
 
 You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython.org/en/latest/esp8266/tutorial/index.html#micropython-tutorial-for-esp8266) for full details, but we've selected.
 
@@ -174,8 +171,6 @@ is the general format.
 Then press enter and you'll see the python prompt. You are now connected to your ESP8266!
 
 ### Micropython Command Walkthrough
-
-
 
 In python like we saw earlier, we import the tools we need to do the various things we need, with microbit, most of it is already there.
 
@@ -285,8 +280,8 @@ Then you can write your `main.py` file based on these conversations, have a look
 
 #### PWM output and Controlling LEDs
 
-[PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
-[Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
+ * [PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
+ * [Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
 
 #### Components
 
@@ -297,7 +292,7 @@ Jumper Wires|4||
 Resistor 4.7k Ohm|1||China
 Conductive Yarn/Rubber/Pressure Sensor|||
 
-### Session 3
+### Session 4
 
 Prototype our wearable. Build on our first prototyping session in Session 1.
 
