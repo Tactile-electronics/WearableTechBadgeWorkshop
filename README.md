@@ -1,11 +1,11 @@
-## Wearable Tech Badge Workshop
+## Wearable Technology Badge Workshop
 
-Learn basics of wearable technology with microbits, sensors, Processing, simple electronics
+Make a small interactive rechargeable wearable badge over 4 weeks to get you started in the world of wearable technology. Designed to give you an understanding of basic fundamentals in electronics, embroidery and coding in the versatile progamming language micropython to control interactive intimate wearables.  We'll use DIY velostat and conductive yarn sensors, analog timer chips and variants of low cost ESP8266 development boards that can help you deploy all kinds of wearable (and non-wearable) technology.
 
-This is a workshop in progress, open to help from @jackie1050 and @Laurapullig
+With this experience you'll be able to prototype wearble tech for art, performance, fashion, product development. It's a chance to share your ideas with peers and meet other members of the DoES Liverpool community
+
 
 ### Structure
-I think now the structure of the workshop could be:
 
  1. Sensor making & Wearable prototyping with Microbit and Micropython
  1. LED flashing with timer chips
@@ -111,8 +111,7 @@ C1 = Capacitance in Farads
 R1 = Resistance in Ohms
 R2 = Resistance in Ohms
 
-
-##### Example
+#### Example
 
 t<sub>on</sub>  = 0.69 x 0.0001 x (4700 + 4700) = 0.64 seconds
 t on = 0.69 X 0.000220 x (4700 + 4700) = 1.42 seconds
@@ -135,25 +134,7 @@ Resistor 47k Ohm|1|ShrimpingIt surplus|China
 Resistor 100k Ohm|1|ShrimpingIt surplus|China
 Conductive Yarn/Rubber/Pressure Sensor|||
 
-#### Traffic light
-
-<img src="images/traffic_light_breadboard.jpg" width="400">
-<img src="images/TrafficLightsSchem.gif" width="400">
-<img src="images/bio_illuminator.gif" width="400">
-
-Component|No.|Cost|Source|Produced|Notes|SubTotal
---|--|--|--|--|--|--
-Mini Breadboard|5|1.196|[Ebay](https://www.ebay.co.uk/itm/5pcs-5x-WHITE-Mini-170-Tie-Point-Solderless-Breadboard-Prototype-Arduino-PIC-PI/262900293129)|China||£5.98
-555 Timer Chip|10|0.185|[Ebay](https://www.ebay.co.uk/itm/10-x-NE555P-Timer-DIP-8-IC-Timer-Fast-Delivery-UK-Seller/323925336619)|China||£1.85
-9V Battery pack|1||ShrimpingIt surplus|China|Considering replacing with rechargeable LIPO battery
-Jumper Wires|40||ShrimpingIt Surplus|
-Capacitor 100μF|1||ShrimpingIt surplus|China
-Resistor 47K Ohm|1||ShrimpingIt surplus|China
-Resistor 470 Ohm|1||ShrimpingIt surplus|China
-Resistor 220 Ohm|2||ShrimpingIt surplus|China
-Resistor 100k Ohm|1||ShrimpingIt surplus|China
-
-### Session 2c
+### Session 3
 
 ![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-screen-blue.svg?longCache=true&style=plastic)
@@ -165,6 +146,8 @@ Flash LEDs in response to our sensors
 <img src="images/ESP8266-Schem-Fritzing.png" width="600">
 
 #### Micropython and the ESP8266
+
+<img src="images/ESP8266-Dev-Board-pinout.jpg" width="600">
 
 We're using the a few variant breakout boards of the ESP8266 like the WeMos D1 Mini Development Board in the diagram above or the bigger [ESP-12E-CP2102](https://www.ebay.co.uk/itm/Esp8266-Esp-12E-Cp2102-Wifi-Network-Development-Board-Module-For-Node-Mcu-GD/264530529453) variant which is like a cheap version of a microbit.
 
@@ -281,7 +264,7 @@ Then in your open console for your ESP:
 then use **paste mode**: move your cursor to just after the set of 3 quotes (they are essential) and press `ctrl + e` and you will be given a few options: right click paste or shortcut `cmd + v` to paste in your text for the programme. Then finish and call `f.close()` to close and save the file.
 
 ```
-f.write("""paste_your_text here""")
+f.write('''paste_your_text here''')
 f.close()
 ```
 
@@ -298,6 +281,12 @@ Now reboot, and if your file is correct it will run the `boot.py` script (don't 
 We generally prototype code by running it line by line, a bit like having a *conversation* with your board. I like the way that weirdly makes you feel more connected to it and we think it might help you learn.
 
 Then you can write your `main.py` file based on these conversations, have a look at our [`main.py` template](main.py) to see how our 'conversations' we've had here looks as a complete python script. (it is like writing the script of the conversation you've alread had :smile:
+
+
+#### PWM output and Controlling LEDs
+
+[PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
+[Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
 
 #### Components
 
