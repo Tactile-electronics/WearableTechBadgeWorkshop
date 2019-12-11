@@ -31,33 +31,9 @@ This first step develops the basics of a pressure sensor; we can refer to more c
  * Follow the [WDHLL pressure sensor build](https://github.com/DoESLiverpool/what-does-health-look-like/tree/master/pressure-sensor)
  * Decide on where and how to wear it and connect it the badge
 
-### Session 2a
-
-Connect Microbit and sensor to P5.js and experiment with code
-> I've some reservations about this bit now. Mainly it's jumping across two programming languages which doesn't make much sense in one workshop that might put people off or confuse them. It made sense for WDHLL but we stuck to blocks and JavaScript with microbit. Really the data visualisation should be expressed in the wearable materials, LEDs, motors etc. So I think replacing this with the timer workshop might be a good idea. But just do the simple flasher as an experience for people. Have a look at the [Stucture above](#structure)
-
-
-
-![Skill Covered](https://img.shields.io/badge/skill-dataVisualisation-yellow.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-JavaScript-blue.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-electronics-green.svg?longCache=true&style=plastic)
-
-Here we use [Microbit](https://microbit.org/code/) and [p5.js](https://p5js.org/) to learn basic principles of how to manipulate analog sensor data with code and share on platforms like [OpenProcessing](https://openprocessing.org) and [Glitch](https://glitch.com)
-
- * We will borrow the course materials from the [What DoES Health Look Like (WDHLL)](https://github.com/DoESLiverpool/what-does-health-look-like/) workshop made by [@Laura_pullig](https://twitter.com/Laura_pullig) & [@Zarino](https://twitter.com/zarino) to learn and experience coding for data visualisation.
- * We'll start with an introduction to Microbits as it's a good way in to code for newcomers.
- * We'll introduce peope to P5.js, a javascript implementation of the popular Processing programming language.
-  * Use [jackie1050's & zarinos test openprocessing sketches](https://www.openprocessing.org/user/139031) and experiment with P5.js.
-
-<!--<img src="https://domesticscience.org.uk/criticalkits/images/WearableBioLEDKit2.jpg" width="600">
--->
-
-### Session 2b
+### Session 2
 
 Make a circuit that illuminates LEDs in flashing sequences
-
-> I think we might lose this in favour of an extra prototyping session but can keep here for reference elsewhere [Stucture](#structure)
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-electonics-green.svg?longCache=true&style=plastic)
@@ -294,7 +270,7 @@ Conductive Yarn/Rubber/Pressure Sensor|||
 
 ### Session 4
 
-Prototype our wearable. Build on our first prototyping session in Session 1.
+Prototype our wearable badge. Build on our first prototyping session in Session 1.
 
 Pull together what we learned with LEDs and presssure sensors, then show more
 
@@ -304,7 +280,7 @@ Pull together what we learned with LEDs and presssure sensors, then show more
 And if there's time, communication between wearables.
 
 ### Session 4
-Fabricate our wearable
+Fabricate our amoeba shaped wearable badge
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
