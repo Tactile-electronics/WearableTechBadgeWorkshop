@@ -223,7 +223,7 @@ while True:
     time.sleep_ms(stretch)
 ```
 
-#### Making Permanent Changes
+### Making Permanent Changes
 
 You need to make a `main.py` file on the board. To do this you need to write your code and copy it into the command line prompt of the ESP
 
@@ -245,7 +245,6 @@ Check its there with
 and
 `os.listDir()` to check it's there.
 
-There are other methods to upload more complex files you can look at in the future like [ampy](https://github.com/scientifichackers/ampy)
 
 Now reboot, and if your file is correct it will run the `boot.py` script (don't worry about that for now it just sets up the board and python) and then your `main.py` file should run!
 
@@ -253,20 +252,122 @@ We generally prototype code by running it line by line, a bit like having a *con
 
 Then you can write your `main.py` file based on these conversations, have a look at our [`main.py` template](main.py) to see how our 'conversations' we've had here looks as a complete python script. (it is like writing the script of the conversation you've alread had :smile:
 
+### Ampy
 
-#### PWM output and Controlling LEDs
+There are other methods to upload more complex files you can look at like [ampy](https://github.com/scientifichackers/ampy) so we will try setting this up for you.
 
+ * `ampy --port /dev/MY_PORT_NAME ls` Lists files
+
+ * `ampy --port /dev/MY_PORT_NAME put examples/circle/lights.py` Puts the file on the board
+ 
+ * `ampy --port /dev/MY_PORT_NAME rm examples/circle/lights.py` Removes the file on the board
+
+### PWM output and Controlling LEDs
+
+We've taken from [this tutorial by Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-pwm-micropython/)
+
+<img src="images/PWM_esp8266_Schem.png" width="400">
+
+For this example, wire an LED to your ESP board. We’ll wire the LED to `GPIO 5` (marked as `D1` on your board), but you can choose another suitable PWM pin
+
+Here’s the script that changes the LED brightness over time by increasing the duty cycle.
+
+```
+from machine import Pin, PWM
+from time import sleep
+
+frequency = 5000
+led = PWM(Pin(5), frequency)
+
+while True:
+    for duty_cycle in range(0, 1024):
+    led.duty(duty_cycle)
+    sleep(0.005)
+```
+
+Also refer to these tutorials
  * [PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
  * [Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
 
+### NeoPixels
+
+NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the `lights.py` script to your board and with a quick 
+
+```
+from lights import *
+```
+
+You can run this example code from the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html):
+
+Once the `lights.py` file is on board, re-log on to your board and you can run these commands:
+
+`cycle()`, `bounce()`, `fade()` and `clear()`
+
+Try writing your own combinations of these functions on a loop.
+
+
+```
+from machine import Pin
+from neopixel import NeoPixel
+import time
+
+n = 7 # Set the number of pixels on your NeoPixel
+pin = Pin(5, Pin.OUT)   # set GPIO5 (D1) to output to drive NeoPixels
+np = NeoPixel(pin, 7)   # create NeoPixel driver on GPIO0 for 7 pixels
+np[0] = (255, 255, 255) # set the first pixel to white
+np.write()              # write data to all pixels
+np[0] = (0, 0, 0) # set the first pixel to nothing (black)
+np.write()              # write data to all pixels
+
+def cycle():
+    for i in range(4 * n):
+        for j in range(n):
+            np[j] = (0, 0, 0)
+        np[i % n] = (255, 255, 255)
+        np.write()
+        time.sleep_ms(25)
+
+def bounce():
+    for i in range(4 * n):
+        for j in range(n):
+            np[j] = (0, 0, 128)
+        if (i // n) % 2 == 0:
+            np[i % n] = (0, 0, 0)
+        else:
+            np[n - 1 - (i % n)] = (0, 0, 0)
+        np.write()
+        time.sleep_ms(60)
+
+def fade():
+    for i in range(0, 4 * 256, 8):
+        for j in range(n):
+            if (i // 256) % 2 == 0:
+                val = i & 0xff
+            else:
+                val = 255 - (i & 0xff)
+            np[j] = (val, 0, 0)
+        np.write()
+
+def clear():
+    for i in range(n):
+        np[i] = (0, 0, 0)
+    np.write()
+```
+
+
 #### Components
 
-Component|No.|Source|Produced|Notes
+Component|No.|Source|Cost|Notes
 --|--|--|--|--
-Microusb data cable|1|||
-Jumper Wires|4||
-Resistor 4.7k Ohm|1||China
-Conductive Yarn/Rubber/Pressure Sensor|||
+Microusb data cable|1|Ebay|£1.20|
+V2 NodeMcu-SP2101-ESP8266 Development Board|1|AliExpress|£3|
+Jumper Wires|10|Ebay|£1|
+Resistor 4.7k Ohm|1|Ebay|£0.50|
+Conductive Yarn|1|Various|£1|
+Pressure Sensor|1|Various|£1|
+Conductive Rubber|1|Various|£1|
+Textile Back|1|Various|£1|
+TOTAL|||£9.70|
 
 ### Session 4
 
