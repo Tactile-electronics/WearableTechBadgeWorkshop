@@ -291,7 +291,7 @@ Also refer to these tutorials
 
 ### NeoPixels
 
-NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the `lights.py` script to your board and with a quick 
+NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script to your board and with a quick 
 
 ```
 from lights import *
@@ -303,7 +303,9 @@ Once the `lights.py` file is on board, re-log on to your board and you can run t
 
 `cycle()`, `bounce()`, `fade()` and `clear()`
 
-Try writing your own combinations of these functions on a loop.
+There's also a [`main.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/main.py) you can add so they run on booting the board.
+
+Try writing your own combinations of these functions on a loop and try changing the for loops to cycle through colours
 
 
 ```
