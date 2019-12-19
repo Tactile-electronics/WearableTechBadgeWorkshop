@@ -128,15 +128,26 @@ You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython
 
 #### Connecting up
 
-Windows - Install [Drivers](https://wiki.wemos.cc/downloads) *(possibly not necessary)* Download [PuTTY](https://putty.org/) to connect your ESP8266 to your computer on USB-Serial
-Linux - Use the built in `screen` or Putty using `$ sudo apt-get install putty` in your Linux Terminal
-Mac - Install [Drivers](https://wiki.wemos.cc/downloads). Then download [PuTTY](https://putty.org/) or use the built-in `Applications/Terminal` and `screen`
+You'll need `CP2102` USB Module drivers to work with our ESP8266's which you can get from our friends at [Shrimping.It](https://shrimping.it/drivers/) and we'll provide them in the workshop from [here](drivers) 
 
-##### Using `screen`
+Linux distributions include built-in CP2102 drivers, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
 
-In terminal you can use the command
+#### Using PUTTY
+
+To get connected on Windows you might be best using PUTTY
+
+Windows Download [PuTTY](https://putty.org/) to connect your ESP8266 to your computer over USB-Serial and be able to send commands to control and set it up.
+
+Linux - Use the built in `screen`, `minicom` or Putty using `$ sudo apt-get install putty` in your Linux Terminal. I'd recommend screen.
+
+Mac - Download [PuTTY](https://putty.org/) or use the built-in `Applications/Terminal` and `screen`
+
+#### Using `screen`
+
+On macos and Linux you can just use a Terminal and `screen`. If your linux doesnt have screen install with `sudo apt-get install screen` or `brew install screen` on a mac after setting up [HomeBrew](https://brew.sh/)
 
 `$ ls /dev/tty.*`
+
 to list your usb devices.
 
 `$ screen /dev/device_name baud-rate`
@@ -145,6 +156,7 @@ is the general format.
 `$ screen -S wearable /dev/tty.SLAB_USBtoUART 115200`
 
 Then press enter and you'll see the python prompt. You are now connected to your ESP8266!
+
 
 ### Micropython Command Walkthrough
 
