@@ -377,14 +377,14 @@ def clear():
 Component|No.|Source|Cost|Notes
 --|--|--|--|--
 Microusb data cable|1|Ebay|£1.20|
-V2 NodeMcu-SP2101-ESP8266 Development Board|1|AliExpress|£3|
+NodeMcu-CP2102-ESP8266 Development Board (narrow profile)|1|[AliExpress](https://www.aliexpress.com/item/32665100123.htm)|£1.93|
 Jumper Wires|10|Ebay|£1|
 Resistor 4.7k Ohm|1|Ebay|£0.50|
 Conductive Yarn|1|Various|£1|
 Pressure Sensor|1|Various|£1|
 Conductive Rubber|1|Various|£1|
 Textile Back|1|Various|£1|
-TOTAL|||£9.70|
+TOTAL|||£8.63|
 
 ### Session 4
 
