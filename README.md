@@ -11,10 +11,10 @@ Under 16s must be accompanied by a parent or guardian, suitable for ages 12 and 
 
 ### Structure
 
- 1. Sensor making & Wearable prototyping with Microbit and Micropython
- 1. LED flashing with timer chips
- 1. LED flashing with ESP8266 and MicroPython
- 1. Wearable constructing
+ 1. [Sensor making & Wearable prototyping with Microbit and Micropython](#session-1)
+ 1. [LED flashing with timer chips](#session-2)
+ 1. [LED flashing with ESP8266 and MicroPython](#session-3)
+ 1. [Wearable constructing](#session-4)
 
 ### Session 1
 
@@ -385,17 +385,6 @@ Pressure Sensor|1|Various|£1|
 Conductive Rubber|1|Various|£1|
 Textile Back|1|Various|£1|
 TOTAL|||£8.63|
-
-### Session 4
-
-Prototype our wearable badge. Build on our first prototyping session in Session 1.
-
-Pull together what we learned with LEDs and presssure sensors, then show more
-
- * **Sensors:** buzzers, piezos, light sensors, accelerometers
- * **Actuators:** buzzers, piezos, motors, pumps, muscles
-
-And if there's time, communication between wearables.
 
 ### Session 4
 Fabricate our amoeba shaped wearable badge
