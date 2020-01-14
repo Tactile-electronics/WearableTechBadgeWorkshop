@@ -1,120 +1,76 @@
 ## Wearable Technology Badge Workshop
 
-Make a small interactive rechargeable wearable badge over 4 weeks to get you started in the world of wearable technology. Designed to give you an understanding of basic fundamentals in electronics, embroidery and coding in the versatile progamming language micropython to control interactive intimate wearables.  We'll use DIY velostat and conductive yarn sensors, analog timer chips and variants of low cost ESP8266 development boards that can help you deploy all kinds of wearable (and non-wearable) technology.
+Make a small interactive rechargeable wearable badge over 4 weeks to get you started in the world of wearable technology. Designed to give you an understanding of basic fundamentals in electronics, embroidery and coding in the versatile progamming language micropython to control interactive intimate wearables.  We'll use DIY conductive yarn pressure sensors and variants of low cost ESP8266 development boards that can help you deploy all kinds of wearable (and non-wearable) technology.
 
-With this experience you'll be able to prototype wearble tech for art, performance, fashion, product development. It's a chance to share your ideas with peers and meet other members of the DoES Liverpool community.
+With this experience you'll be able to prototype and deply wearable tech for art, performance, fashion, product development. It's a chance to share your ideas with peers and meet other members of the DoES Liverpool community and get to know our facilities for the future.
 
-All materials are provided, with extensive workshop notes and reference and resources plus your own ESP8266 development board and battery pack you can re-use for prototyping your next project.
+All materials are provided, with extensive workshop notes, reference and resources here plus your own kit featuring an ESP8266 development board, Sublimation printed sensor, single and 6-ring NeoPixels, and a rechargeable battery pack you can for your next project.
 
 Under 16s must be accompanied by a parent or guardian, suitable for ages 12 and up.
 
-
 ### Structure
 
- 1. [Sensor making & Wearable prototyping with Microbit and Micropython](#session-1)
- 1. [LED flashing with timer chips](#session-2)
- 1. [LED flashing with ESP8266 and MicroPython](#session-3)
- 1. [Wearable constructing](#session-4)
+ 1. [Analog Textile Sensor making](#session-1)
+ 1. [LED & NeoPixel control with ESP8266 and MicroPython](#session-2)
+ 1. [Analog Sensor & ESP8266](#session-3)
+ 1. [Advanced ESP8266, sensor & LED control & Wearable Badge constructing](#session-4)
 
 ### Session 1
 
-<!--<img src="https://domesticscience.org.uk/criticalkits/images/WearableBioLEDKit1.jpg" width="600">-->
-
-Make & test a DIY Wearable Pressure Sensor using a [Microbit and Micropython](https://microbit.org/guide/python/)
+Make & test an analog textile sensor to understand the basics of electrical resistance and the flow of current in a simple circuit.
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-micropython-yellow.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-electronics-green.svg?longCache=true&style=plastic)
 
-This first step develops the basics of a pressure sensor; we can refer to more complex and accurate sensors and reflect on their usage.
 
- * Follow the [WDHLL pressure sensor build](https://github.com/DoESLiverpool/what-does-health-look-like/tree/master/pressure-sensor)
- * Decide on where and how to wear it and connect it the badge
+<img src="images/session1/Session_1_Circuit_Image.png" width="400">
 
-### Session 2
+Our breadboard lets us easily connect electronic components and wire of the correct gauge clearly without the components falling out. They are how people prototype a circuit, and quite often you will rewire it in a way that's more robust and permanent or even design and make your own printed circuit boards (PCBs). On these mini 170-point breadboards there are 2 columns of 17 rows of 5 pins. Each 5 pin set on a  row are connected electrically so current flows through components. We generally dont use voltage over 12V when using these breadboards so we never have anything close to mains voltage. We are not even going above 3.7V with our wearables!
 
-Make a circuit that illuminates LEDs in flashing sequences
+Follow the pictures below to make the circuit and compare it with the circuit diagrams provided. That's how you'll find diagrams on the internet and in electronics books, so it's worth having a look at those and doing some further research.
 
-![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-electonics-green.svg?longCache=true&style=plastic)
+#### Circuit
 
-Here the 3 of us were interested in exploring physical computing in counterpoint to the previous workshops software layers. We are often frustrated with having to use code to do simple routing or logic that could be done with electronic components. Programming with components means you really understand what components do and how they scale up into Integrated circuits and gives a more intimate understanding of the tech we use.
-
-
- * We've used this [555 Timer Learning Site](http://www.555-timer-circuits.com/) to make our circuits
-
-
-#### 555 Timers
-
-We are using the simple `555` timer chip, one of the most common workhorses of electronics. This integrated circuit creates oscillating square wave signals that can be used to control the flow of voltage in a circuit and so control the logic of say, controlling an LED.
-
-<img src="images/TimerLayout.gif">
-
-Find out more on this [555 Timer Circuit website](http://www.555-timer-circuits.com/#circuits)
+1. <img src="images/session1/1/1.jpg" width="400">
+Insert your LED. It matters which way the LED goes in; it's got a negative cathode `-` and a positive anode `+` if you get it wrong you can damage it. The long leg of the LED is `+'ve`, the shorter leg, the cathode, is `-'ve'`
+2. <img src="images/session1/1/2.jpg" width="400">
+Add your coin cell holder and coin cell. Be careful you understand the `+'ve` and `-'ve` cathod and anode. The `+` on the coin cell should be visible facing up, the Flat side of the coin cell holder is `-`
+3. <img src="images/session1/1/3.jpg" width="400">
+Add a red jummper wire connecting the long leg `+` anode of the LED with the `+` anode of the coin cell holder, the pin nearest the flat side of the holder
+4. <img src="images/session1/1/4.jpg" width="400">
+5. <img src="images/session1/2/5.jpg" width="400">
+6. <img src="images/session1/2/8.jpg" width="400">
 
 
-#### Simple Flasher
-
-<img src="images/Multi-Timing-555-Flasher.jpg" width="400">
-<img src="images/555-Circuit-Schem-Fritzing.png" width="400">
-<img src="images/555-Circuit-Breadboard-Fritzing.png" width="400">
-
-We've made a circuit with an array of capacitors and resistors so you can experiment with the timings
-
-##### Timing LED pulses
-
- * C1 1µF Capacitor
- * C2 100µF Capacitor
- * C3 220µF Capacitor
- * R1 = 4.7K Ohm
- * R2 = 4.7K Ohm
- * R3 = 1K Ohm
- * R4 = 10K Ohm
- * R5 = 47K Ohm
- * R6 = 100K Ohm
-
-You can work out the timings with this formula
-
-t<sub>on</sub> = 0.69 x C1 x (R1 + R2)
-t<sub>off</sub> = 0.69 x C1 x R2
-
-t<sub>on</sub> = Length of high pulse (seconds)
-t<sub>off</sub> = Length of low pulse (seconds)
-C1 = Capacitance in Farads
-R1 = Resistance in Ohms
-R2 = Resistance in Ohms
-
-#### Example
-
-t<sub>on</sub>  = 0.69 x 0.0001 x (4700 + 4700) = 0.64 seconds
-t on = 0.69 X 0.000220 x (4700 + 4700) = 1.42 seconds
-
-#### Components
+#### Component List
 
 Component|No.|Source|Produced|Notes
 --|--|--|--|--
-300 point Half Breadboard|1|ShrimpingIt surplus|China
-9V Battery pack|1|ShrimpingIt surplus|China|Consider replacing with rechargeable LIPO battery
-Jumper Wires|9|DoES Surplus|
-555 Timer Chip|1|Ebay|China
-Capacitor 1μF|1|ShrimpingIt surplus|China
-Capacitor 100μF|1|ShrimpingIt surplus|China
-Capacitor 220μF|1|ShrimpingIt surplus|China
-Resistor 4.7k Ohm|1|ShrimpingIt surplus|China
-Resistor 4.7k Ohm|1|ShrimpingIt surplus|China
-Resistor 10k Ohm|1|ShrimpingIt surplus|China
-Resistor 47k Ohm|1|ShrimpingIt surplus|China
-Resistor 100k Ohm|1|ShrimpingIt surplus|China
-Conductive Yarn/Rubber/Pressure Sensor|||
+170 point<br>mini breadboard|1|DoES|China|For prototyping
+3V CR2032 coin cell battery|1|Ebay|
+Two Pin Button|1|[Taydae Electronics](https://www.taydaelectronics.com/tact-switch-6-6mm-5mm-through-hole-spst-no.html)|China|simple breadboard compatible button
+CR2032-compatible Watch Battery holder|1|[BatteryHolders.com](http://batteryholders.com/part.php?pn=BC2032-E2&original=CR2032&override=CR2032)|China|Easy breadboarding holder
+Red Stripped solid core 22AWG wire|1|[Farnell](https://uk.farnell.com/c/cable-wire-cable-assemblies/hook-up-wire?wire-gauge=22awg)|[Alphawire](http://www.alphawire.com/) New Jersey US|Stripped fits into breadboards easily
+Green Stripped solid core 22AWG wire|1|[Farnell](https://uk.farnell.com/c/cable-wire-cable-assemblies/hook-up-wire?wire-gauge=22awg)|[Alphawire](http://www.alphawire.com/) New Jersey US|Stripped fits into breadboards easily
+Resistor 100 Ohm|1|Ebay|China|Resistor; fits anyway round (polarity doesn't matter)
+Resistor 10K Ohm|1|Ebay|China|Resistor; fits anyway round (polarity doesn't matter)
 
-### Session 3
+This first step develops the basics of a pressure sensor; we can refer to more complex and accurate sensors and reflect on their usage.
+
+### Further Reading
+
+You can read about an alternative form of pressure sensor using [Velostat](https://www.adafruit.com/product/1361) that Laura made for another workshop using a similar microcontroller [Microbit](https://www.microbit.org/) belwo, that also runs micropython the programming language we are using to control our sensors and LED's.
+
+[Pressure sensor build](https://github.com/DoESLiverpool/what-does-health-look-like/tree/master/pressure-sensor)
+
+### Session 2
 
 ![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-screen-blue.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
 
-Flash LEDs in response to our sensors using micropython on ESP8266 
+Flash LEDs in response to our sensors using micropython on ESP8266
 
 <img src="images/ESP8266-Schem-Fritzing.png" width="600">
 
@@ -128,7 +84,7 @@ You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython
 
 #### Connecting up
 
-You'll need `CP2102` USB Module drivers to work with our ESP8266's which you can get from our friends at [Shrimping.It](https://shrimping.it/drivers/) and we'll provide them in the workshop from [here](drivers) 
+You'll need `CP2102` USB Module drivers to work with our ESP8266's which you can get from our friends at [Shrimping.It](https://shrimping.it/drivers/) and we'll provide them in the workshop from [here](drivers)
 
 Linux distributions include built-in CP2102 drivers, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
 
@@ -271,7 +227,7 @@ There are other methods to upload more complex files you can look at like [ampy]
  * `ampy --port /dev/MY_PORT_NAME ls` Lists files
 
  * `ampy --port /dev/MY_PORT_NAME put examples/circle/lights.py` Puts the file on the board
- 
+
  * `ampy --port /dev/MY_PORT_NAME rm examples/circle/lights.py` Removes the file on the board
 
 ### PWM output and Controlling LEDs
@@ -303,10 +259,10 @@ Also refer to these tutorials
 
 ### NeoPixels
 
-To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+VCC` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them. 
+To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+VCC` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them.
 
 
-NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script to your board and with a quick 
+NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script to your board and with a quick
 
 ```
 from lights import *
@@ -386,12 +342,26 @@ Conductive Rubber|1|Various|£1|
 Textile Back|1|Various|£1|
 TOTAL|||£8.63|
 
+### Session 3
+
+![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-electronics-green.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
+
+Re-visit our sensor circuit but this time combine with our ESP8266 boards and controlling our LEDs
+
 ### Session 4
-Fabricate our amoeba shaped wearable badge
+
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
 
-Finally we assemble everything using a textile pocket to enclose electronics
+Fabricate our amoeba shaped wearable badge and assemble everything using a textile pocket to enclose electronics
 
  * Enclose the ESP circuit in a customisable fabric template
+
+## TODO
+
+ * [x] Re-solder the press studs
