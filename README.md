@@ -102,7 +102,7 @@ Mac - Download [PuTTY](https://putty.org/) or use the built-in `Applications/Ter
 
 On macos and Linux you can just use a Terminal and `screen`. If your linux doesnt have screen install with `sudo apt-get install screen` or `brew install screen` on a mac after setting up [HomeBrew](https://brew.sh/)
 
-`$ ls /dev/tty.*`
+`$ ls /dev/tty*`
 
 to list your usb devices.
 
@@ -211,7 +211,7 @@ Check its there with
 
 `import os`
 and
-`os.listDir()` to check it's there.
+`os.listdir()` to check it's there.
 
 
 Now reboot, and if your file is correct it will run the `boot.py` script (don't worry about that for now it just sets up the board and python) and then your `main.py` file should run!

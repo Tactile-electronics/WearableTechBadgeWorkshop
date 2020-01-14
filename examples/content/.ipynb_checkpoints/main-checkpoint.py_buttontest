@@ -1,0 +1,11 @@
+import time
+from machine import Pin
+led = Pin(2, Pin.OUT)
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+while True:
+    if not button.value():
+        led.value(not led.value())
+        time.sleep_ms(300)
+        while not button.value():
+            pass
+
