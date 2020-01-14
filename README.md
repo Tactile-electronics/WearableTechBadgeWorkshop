@@ -1,5 +1,7 @@
 ## Wearable Technology Badge Workshop
 
+<img src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F85203521%2F19213558993%2F1%2Foriginal.20191220-122025?w=800&auto=format%2Ccompress&q=75&sharp=10&rect=14%2C0%2C610%2C305&s=6e27e184fdfa4b9a972081742b81bc35" width="600">
+
 Make a small interactive rechargeable wearable badge over 4 weeks to get you started in the world of wearable technology. Designed to give you an understanding of basic fundamentals in electronics, embroidery and coding in the versatile progamming language micropython to control interactive intimate wearables.  We'll use DIY conductive yarn pressure sensors and variants of low cost ESP8266 development boards that can help you deploy all kinds of wearable (and non-wearable) technology.
 
 With this experience you'll be able to prototype and deply wearable tech for art, performance, fashion, product development. It's a chance to share your ideas with peers and meet other members of the DoES Liverpool community and get to know our facilities for the future.
