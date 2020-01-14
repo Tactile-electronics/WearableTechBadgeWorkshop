@@ -31,15 +31,23 @@ Follow the pictures below to make the circuit and compare it with the circuit di
 
 #### Circuit
 
-1. <img src="images/session1/1/1.jpg" width="400">
+<img src="images/session1/1/1.jpg" width="400">
+
 Insert your LED. It matters which way the LED goes in; it's got a negative cathode `-` and a positive anode `+` if you get it wrong you can damage it. The long leg of the LED is `+'ve`, the shorter leg, the cathode, is `-'ve'`
-2. <img src="images/session1/1/2.jpg" width="400">
+
+<img src="images/session1/1/2.jpg" width="400">
+
 Add your coin cell holder and coin cell. Be careful you understand the `+'ve` and `-'ve` cathod and anode. The `+` on the coin cell should be visible facing up, the Flat side of the coin cell holder is `-`
-3. <img src="images/session1/1/3.jpg" width="400">
+
+<img src="images/session1/1/3.jpg" width="400">
+
 Add a red jummper wire connecting the long leg `+` anode of the LED with the `+` anode of the coin cell holder, the pin nearest the flat side of the holder
-4. <img src="images/session1/1/4.jpg" width="400">
-5. <img src="images/session1/2/5.jpg" width="400">
-6. <img src="images/session1/2/8.jpg" width="400">
+
+<img src="images/session1/1/4.jpg" width="400">
+
+<img src="images/session1/2/5.jpg" width="400">
+
+<img src="images/session1/2/8.jpg" width="400">
 
 
 #### Component List
