@@ -43,14 +43,15 @@ Add your coin cell holder and coin cell. Be careful you understand the `+'ve` an
 
 <img src="images/session1/1/3.jpg" width="400">
 
-Add a red jummper wire connecting the long leg `+` anode of the LED with the `+` anode of the coin cell holder, the pin nearest the flat side of the holder
+Add a red jumper wire connecting the long leg `+` anode of the LED with the `+` anode of the coin cell holder, the pin nearest the flat side of the holder
 
 <img src="images/session1/1/4.jpg" width="400">
 
-<img src="images/session1/2/5.jpg" width="400">
+Add a 100 Ohm resistor
 
 <img src="images/session1/2/8.jpg" width="400">
 
+Connect your completed Fabric sensor.
 
 #### Component List
 
