@@ -53,6 +53,32 @@ Add a 100 Ohm resistor
 
 Connect your completed Fabric sensor.
 
+<img src="https://user-images.githubusercontent.com/8654515/72371763-efbcae80-36fc-11ea-8d14-13dd224ededc.jpg" width="400">
+Stitch onto the felt with the resistive thread, leaving a long piece on the back of the felt before your first stitch
+
+<img src="https://user-images.githubusercontent.com/8654515/72371771-f0eddb80-36fc-11ea-990e-8f0d262bd25a.jpg" width="400">
+
+
+<img src="https://user-images.githubusercontent.com/8654515/72371783-f5b28f80-36fc-11ea-9aa2-93fa34d648ef.jpg" width="400">
+Make some stitches close together some can be touching but not overlapping or on top of one another
+
+<img src="https://user-images.githubusercontent.com/8654515/72371789-f8ad8000-36fc-11ea-8e0a-334231272d38.jpg" width="400">
+Continue until you have stitched along the back of the design, its fine to leave gaps. Leave a piece trailing at the other end. 
+
+<img src="https://user-images.githubusercontent.com/8654515/72371791-f9dead00-36fc-11ea-9184-d17322443f5c.jpg" width="400">
+
+
+<img src="https://user-images.githubusercontent.com/8654515/72371792-fba87080-36fc-11ea-88c5-f606972d1abc.jpg" width="400">
+Tie a piece of conductive thread to one end of the stitching
+Stitch and add a snap fastener, then repeat at the other side with conductive thread.
+
+<img src="https://user-images.githubusercontent.com/8654515/72371794-fcd99d80-36fc-11ea-9517-2dbd8afebe98.jpg" width="400">
+Solder wires onto the other side of the snap fasteners.
+
+<img src="https://user-images.githubusercontent.com/8654515/72371797-fea36100-36fc-11ea-9f42-789dc24dbb6a.jpg" width="400">
+Clip the fasteners together
+
+
 #### Component List
 
 Component|No.|Source|Produced|Notes
