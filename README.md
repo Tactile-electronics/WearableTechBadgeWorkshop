@@ -63,7 +63,7 @@ Stitch onto the felt with the resistive thread, leaving a long piece on the back
 Make some stitches close together some can be touching but not overlapping or on top of one another
 
 <img src="https://user-images.githubusercontent.com/8654515/72371789-f8ad8000-36fc-11ea-8e0a-334231272d38.jpg" width="400">
-Continue until you have stitched along the back of the design, its fine to leave gaps. Leave a piece trailing at the other end. 
+Continue until you have stitched along the back of the design, its fine to leave gaps. Leave a piece trailing at the other end.
 
 <img src="https://user-images.githubusercontent.com/8654515/72371791-f9dead00-36fc-11ea-9184-d17322443f5c.jpg" width="400">
 
@@ -107,49 +107,34 @@ You can read about an alternative form of pressure sensor using [Velostat](https
 ![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
 
-Flash LEDs in response to our sensors using micropython on ESP8266
+Flash LEDs using micropython on the ESP8266
 
-<img src="images/ESP8266-Schem-Fritzing.png" width="600">
 
 #### Micropython and the ESP8266
 
 <img src="images/ESP8266-Dev-Board-pinout.jpg" width="600">
 
+The ESP8266 and it's larger ESP32 cousin is a powerful self contained microcontroller breakout board that is like arduino except incredibly powerful flexible and cheap, it's able to run web browsers, control LED's and motors and respond to a range of analog and digital sensors. What's special is that it can run micropython a powerful high level programming language which means that is quite easy to use and write even without being a programmer.
+
 We're using the a few variant breakout boards of the ESP8266 like the WeMos D1 Mini Development Board in the diagram above or the bigger [ESP-12E-CP2102](https://www.ebay.co.uk/itm/Esp8266-Esp-12E-Cp2102-Wifi-Network-Development-Board-Module-For-Node-Mcu-GD/264530529453) variant which you can see above with its `GPIO` pin arrangement. We'll be using these in our workshops and you'll be able to take them home.
+
+Don't worry about the seemingly contradictory annotations on the diagram, it will make sense. We are first of all only using the 'pin' (the metal legs that fit a breadboard)
 
 You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython.org/en/latest/esp8266/tutorial/index.html#micropython-tutorial-for-esp8266) for full details, but we've selected.
 
 #### Connecting up
 
-You'll need `CP2102` USB Module drivers to work with our ESP8266's which you can get from our friends at [Shrimping.It](https://shrimping.it/drivers/) and we'll provide them in the workshop from [here](drivers)
+<img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?w=750&ssl=1" width="600">
 
-Linux distributions include built-in CP2102 drivers, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
+You might need `CP2102` USB Module drivers to work with our ESP8266's which are the `CP2102` variants which you can get from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) or in the workshop repo [here](drivers)
 
-#### Using PUTTY
+Linux distributions often include built-in CP2102 drivers, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
 
-To get connected on Windows you might be best using PUTTY
+We use these drivers 
 
-Windows Download [PuTTY](https://putty.org/) to connect your ESP8266 to your computer over USB-Serial and be able to send commands to control and set it up.
+### Software
 
-Linux - Use the built in `screen`, `minicom` or Putty using `$ sudo apt-get install putty` in your Linux Terminal. I'd recommend screen.
-
-Mac - Download [PuTTY](https://putty.org/) or use the built-in `Applications/Terminal` and `screen`
-
-#### Using `screen`
-
-On macos and Linux you can just use a Terminal and `screen`. If your linux doesnt have screen install with `sudo apt-get install screen` or `brew install screen` on a mac after setting up [HomeBrew](https://brew.sh/)
-
-`$ ls /dev/tty*`
-
-to list your usb devices.
-
-`$ screen /dev/device_name baud-rate`
-is the general format.
-
-`$ screen -S wearable /dev/tty.SLAB_USBtoUART 115200`
-
-Then press enter and you'll see the python prompt. You are now connected to your ESP8266!
-
+We are using [uPyCraft](https://randomnerdtutorials.com/flash-upload-micropython-firmware-esp32-esp8266/) 
 
 ### Micropython Command Walkthrough
 
@@ -179,120 +164,12 @@ now things will work more intuitively if we use Led2 instead!
 `Led2.off()`
 `Led2.on()`
 
-Ok now lets read one of our sensors. Wire up following the diagram above.
-
-The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will need the ADC class to make it work
-
-`from machine import ADC`
-`adc = ADC(0)`
-`adc.read()`
-
-Will return a value. Ok lets get it to read the values until we press `ctrl +c`. We will use a simple loop using `while`
-
-`while True:` press return and you will see `...` and your cursor will indent automatically.
-
-`adc.read()`
-
-Now press return, and you get another indent, return a few time indicates thats the end of that loop and it will then execute the code.
-
-Play with your sensor and watch the numbers change. Cool eh? Bit fast though, lets slow it down with `time`
-
-`import time`
-
-Now we can use `time.sleep(seconds)` to wait before reading the pin again.
-
-```
-while True:
-    adc.read()
-    time.sleep(0.5)
-```
-
-Now lets use that to blink our LED
-
-```
-while True:
-    Led2.on()
-    time.sleep_ms(adc.read() * 10)
-    Led2.off()
-    time.sleep_ms(adc.read() * 10)
-```
-
-Ok but higher resistance, bigger stretch or pressue is slowing our flashes. WE can flip it round
-
-```
-while True:
-    stretch = 500 - (adc.read() *10)
-    Led2.on()
-    time.sleep_ms(stretch)
-    Led2.off()
-    time.sleep_ms(stretch)
-```
 
 ### Making Permanent Changes
 
-You need to make a `main.py` file on the board. To do this you need to write your code and copy it into the command line prompt of the ESP
+So far we've just been sending messages over the serial console in the bottom window of the uPyCraft IDE.
 
-So copy the text from [main.py](main.py).
-Then in your open console for your ESP:
-
-`f = open('main.py', 'w')`
-
-then use **paste mode**: move your cursor to just after the set of 3 quotes (they are essential) and press `ctrl + e` and you will be given a few options: right click paste or shortcut `cmd + v` to paste in your text for the programme. Then finish and call `f.close()` to close and save the file.
-
-```
-f.write('''paste_your_text here''')
-f.close()
-```
-
-Check its there with
-
-`import os`
-and
-`os.listdir()` to check it's there.
-
-
-Now reboot, and if your file is correct it will run the `boot.py` script (don't worry about that for now it just sets up the board and python) and then your `main.py` file should run!
-
-We generally prototype code by running it line by line, a bit like having a *conversation* with your board. I like the way that weirdly makes you feel more connected to it and we think it might help you learn.
-
-Then you can write your `main.py` file based on these conversations, have a look at our [`main.py` template](main.py) to see how our 'conversations' we've had here looks as a complete python script. (it is like writing the script of the conversation you've alread had :smile:
-
-### Ampy
-
-There are other methods to upload more complex files you can look at like [ampy](https://github.com/scientifichackers/ampy) so we will try setting this up for you.
-
- * `ampy --port /dev/MY_PORT_NAME ls` Lists files
-
- * `ampy --port /dev/MY_PORT_NAME put examples/circle/lights.py` Puts the file on the board
-
- * `ampy --port /dev/MY_PORT_NAME rm examples/circle/lights.py` Removes the file on the board
-
-### PWM output and Controlling LEDs
-
-We've taken from [this tutorial by Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-pwm-micropython/)
-
-<img src="images/PWM_esp8266_Schem.png" width="400">
-
-For this example, wire an LED to your ESP board. We’ll wire the LED to `GPIO 5` (marked as `D1` on your board), but you can choose another suitable PWM pin
-
-Here’s the script that changes the LED brightness over time by increasing the duty cycle.
-
-```
-from machine import Pin, PWM
-from time import sleep
-
-frequency = 5000
-led = PWM(Pin(5), frequency)
-
-while True:
-    for duty_cycle in range(0, 1024):
-    led.duty(duty_cycle)
-    sleep(0.005)
-```
-
-Also refer to these tutorials
- * [PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
- * [Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
+For our micropython code to work after we've disconnedted you need to make a `main.py` file on the board. To do this once connected to your ESP8266 you need to write your code in a folder called  into the folder called `device` on the top right of `uPyCraft`
 
 ### NeoPixels
 
@@ -379,6 +256,7 @@ Conductive Rubber|1|Various|£1|
 Textile Back|1|Various|£1|
 TOTAL|||£8.63|
 
+
 ### Session 3
 
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
@@ -387,7 +265,57 @@ TOTAL|||£8.63|
 ![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
 
+<img src="images/ESP8266-Schem-Fritzing.png" width="600">
 Re-visit our sensor circuit but this time combine with our ESP8266 boards and controlling our LEDs
+
+Ok now lets read the values of one of our sensors. Wire up following the diagram above.
+
+The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will need the ADC class to make it work
+
+`from machine import ADC`
+`adc = ADC(0)`
+`adc.read()`
+
+Will return a value. Ok lets get it to read the values until we press `ctrl +c`. We will use a simple loop using `while`
+
+`while True:` press return and you will see `...` and your cursor will indent automatically.
+
+`adc.read()`
+
+Now press return, and you get another indent, return a few time indicates thats the end of that loop and it will then execute the code.
+
+Play with your sensor and watch the numbers change. Cool eh? Bit fast though, lets slow it down with `time`
+
+`import time`
+
+Now we can use `time.sleep(seconds)` to wait before reading the pin again.
+
+```
+while True:
+    adc.read()
+    time.sleep(0.5)
+```
+
+Now lets use that to blink our LED
+
+```
+while True:
+    Led2.on()
+    time.sleep_ms(adc.read() * 10)
+    Led2.off()
+    time.sleep_ms(adc.read() * 10)
+```
+
+Ok but higher resistance, bigger stretch or pressue is slowing our flashes. WE can flip it round
+
+```
+while True:
+    stretch = 500 - (adc.read() *10)
+    Led2.on()
+    time.sleep_ms(stretch)
+    Led2.off()
+    time.sleep_ms(stretch)
+```
 
 ### Session 4
 
@@ -398,6 +326,102 @@ Re-visit our sensor circuit but this time combine with our ESP8266 boards and co
 Fabricate our amoeba shaped wearable badge and assemble everything using a textile pocket to enclose electronics
 
  * Enclose the ESP circuit in a customisable fabric template
+
+### Additional Tutorials
+
+### PWM output and Controlling LEDs
+
+We've taken from [this tutorial by Random Nerd Tutorials](https://randomnerdtutorials.com/esp32-esp8266-pwm-micropython/)
+
+<img src="images/PWM_esp8266_Schem.png" width="400">
+
+For this example, wire an LED to your ESP board. We’ll wire the LED to `GPIO 5` (marked as `D1` on your board), but you can choose another suitable PWM pin
+
+Here’s the script that changes the LED brightness over time by increasing the duty cycle.
+
+```
+from machine import Pin, PWM
+from time import sleep
+
+frequency = 5000
+led = PWM(Pin(5), frequency)
+
+while True:
+    for duty_cycle in range(0, 1024):
+    led.duty(duty_cycle)
+    sleep(0.005)
+```
+
+Also refer to these tutorials
+ * [PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
+ * [Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
+
+### Command Line alternatives to uPyCraft
+
+Once you've got used to micropython there are soem command line options for advanced users that you can see below.
+
+#### Using PUTTY
+
+To get connected on Windows you could also use PUTTY
+
+Windows Download [PuTTY](https://putty.org/) to connect your ESP8266 to your computer over USB-Serial and be able to send commands to control and set it up.
+
+Linux - Use the built in `screen`, `minicom` or Putty using `$ sudo apt-get install putty` in your Linux Terminal. I'd recommend screen.
+
+Mac - Download [PuTTY](https://putty.org/) or use the built-in `Applications/Terminal` and `screen`
+
+#### Using `screen`
+
+On macos and Linux you can just use a Terminal and `screen`. If your linux doesnt have screen install with `sudo apt-get install screen` or `brew install screen` on a mac after setting up [HomeBrew](https://brew.sh/)
+
+`$ ls /dev/tty*`
+
+to list your usb devices.
+
+`$ screen /dev/device_name baud-rate`
+is the general format.
+
+`$ screen -S wearable /dev/tty.SLAB_USBtoUART 115200`
+
+Then press enter and you'll see the python prompt. You are now connected to your ESP8266!
+
+### Making Permanent Changes
+
+You need to make a `main.py` file on the board. To do this you need to write your code and copy it into the command line prompt of the ESP
+
+So copy the text from [main.py](main.py).
+Then in your open console for your ESP:
+
+`f = open('main.py', 'w')`
+
+then use **paste mode**: move your cursor to just after the set of 3 quotes (they are essential) and press `ctrl + e` and you will be given a few options: right click paste or shortcut `cmd + v` to paste in your text for the programme. Then finish and call `f.close()` to close and save the file.
+
+```
+f.write('''paste_your_text here''')
+f.close()
+```
+
+Check its there with
+
+`import os`
+and
+`os.listdir()` to check it's there.
+
+
+Now reboot, and if your file is correct it will run the `boot.py` script (don't worry about that for now it just sets up the board and python) and then your `main.py` file should run!
+
+We generally prototype code by running it line by line, a bit like having a *conversation* with your board. I like the way that weirdly makes you feel more connected to it and we think it might help you learn.
+
+
+### Ampy
+
+There are other methods to upload more complex files you can look at like [ampy](https://github.com/scientifichackers/ampy) so we will try setting this up for you.
+
+ * `ampy --port /dev/MY_PORT_NAME ls` Lists files
+
+ * `ampy --port /dev/MY_PORT_NAME put examples/circle/lights.py` Puts the file on the board
+
+ * `ampy --port /dev/MY_PORT_NAME rm examples/circle/lights.py` Removes the file on the board
 
 ## TODO
 
