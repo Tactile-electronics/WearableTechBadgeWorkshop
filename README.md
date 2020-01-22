@@ -287,11 +287,37 @@ NeoPixels are addressable RGB LEDs and micropython has a library module just for
 
 ### Single NeoPixel Use
 
-More to follow for next week!
+I'll update this by the end of the week so you can play at home.
 
 ```
 from lights import *
 ```
+
+#### Components
+
+Component|No.|Source|Cost|Notes
+--|--|--|--|--
+Microusb data cable|1|Ebay|£1.20|
+NodeMcu-CP2102-ESP8266 Development Board (narrow profile)|1|[AliExpress](https://www.aliexpress.com/item/32665100123.htm)|£1.93|
+Jumper Wires|10|Ebay|£1|
+Resistor 4.7k Ohm|1|Ebay|£0.50|
+Conductive Yarn|1|Various|£1|
+Pressure Sensor|1|Various|£1|
+Conductive Rubber|1|Various|£1|
+Textile Back|1|Various|£1|
+TOTAL|||£8.63|
+
+
+### Session 3
+
+![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-electronics-green.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
+
+Multiple Neopixel control and Re-visiting our sensor circuit but this time combine with our ESP8266 boards and controlling our LEDs
+
 
 ### Mutliple NeoPixels
 
@@ -358,32 +384,9 @@ def clear():
     np.write()
 ```
 
-
-#### Components
-
-Component|No.|Source|Cost|Notes
---|--|--|--|--
-Microusb data cable|1|Ebay|£1.20|
-NodeMcu-CP2102-ESP8266 Development Board (narrow profile)|1|[AliExpress](https://www.aliexpress.com/item/32665100123.htm)|£1.93|
-Jumper Wires|10|Ebay|£1|
-Resistor 4.7k Ohm|1|Ebay|£0.50|
-Conductive Yarn|1|Various|£1|
-Pressure Sensor|1|Various|£1|
-Conductive Rubber|1|Various|£1|
-Textile Back|1|Various|£1|
-TOTAL|||£8.63|
-
-
-### Session 3
-
-![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-electronics-green.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-python-black.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-terminals-lightblue.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-esp8266-gold.svg?longCache=true&style=plastic)
+### Sensor Readings
 
 <img src="images/ESP8266-Schem-Fritzing.png" width="600">
-Re-visit our sensor circuit but this time combine with our ESP8266 boards and controlling our LEDs
 
 Ok now lets read the values of one of our sensors. Wire up following the diagram above.
 
