@@ -156,10 +156,7 @@ You need to send the micropython software to the board first. [Download it here]
 
 Go to **Tools** \> **Serial** and select your ESP8266 COM port (in our case it's COM5).
 
-![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?resize=692%2C576&ssl=1){.aligncenter
-.size-full .wp-image-74920 width="692" height="576"
-sizes="(max-width: 692px) 100vw, 692px"
-srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?w=692&ssl=1 692w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?resize=300%2C250&ssl=1 300w"}
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?resize=692%2C576&ssl=1)
 
 [**Important:**]{style="color: #ff0000;"} if you plug your ESP8266 board to your computer, but you can't find the ESP8266 Port available in your uPyCraft IDE, it might be one of these two problems: **1.** USB drivers missing or **2.** USB cable without data wires.
 
@@ -167,9 +164,7 @@ srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPy
 
 The [ESP8266 ESP-12E NodeMCU](https://makeradvisor.com/tools/esp8266-esp-12e-nodemcu-wi-fi-development-board/) board uses the **CP2102** chip.
 
-![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?resize=750%2C388&ssl=1){.aligncenter .size-full .wp-image-75010 width="750" height="388"
-sizes="(max-width: 750px) 100vw, 750px"
-srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?w=750&ssl=1 750w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?resize=300%2C155&ssl=1 300w"}
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?resize=750%2C388&ssl=1)
 
 After they are installed, restart the uPyCraft IDE and you should see the COM port in the **Tools** menu.
 
@@ -181,19 +176,13 @@ USB cables from powerbanks often don't have data wires (they are charge only). S
 
 Go to **Tools** \> **Board**. For this tutorial, we assume that you're using the ESP8266, so make sure you select the "**esp8266**" option:
 
-![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?resize=692%2C576&ssl=1){.aligncenter
-.size-full .wp-image-74919 width="692" height="576"
-sizes="(max-width: 692px) 100vw, 692px"
-srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?w=692&ssl=1 692w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?resize=300%2C250&ssl=1 300w"}
+![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?resize=692%2C576&ssl=1)
 
 ### Flashing/Uploading MicroPython Firmware
 
 Finally, go to **Tools** \> **BurnFirmware** menu to flash your ESP32 with MicroPython.
 
-![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?resize=693%2C576&ssl=1){.aligncenter
-.size-full .wp-image-74921 width="693" height="576"
-sizes="(max-width: 693px) 100vw, 693px"
-srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?w=693&ssl=1 693w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?resize=300%2C249&ssl=1 300w"}
+![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?resize=693%2C576&ssl=1)
 
 Select all these options to flash the ESP8266 board:
 
@@ -204,40 +193,25 @@ Select all these options to flash the ESP8266 board:
 -   Firmware: Select `Users` and choose the `ESP8266 .bin`
 file you downloaded earlier
 
-![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?resize=692%2C576&ssl=1){.aligncenter
-.size-full .wp-image-74944 width="692" height="576"
-sizes="(max-width: 692px) 100vw, 692px"
-srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?w=692&ssl=1 692w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?resize=300%2C250&ssl=1 300w"}
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?resize=692%2C576&ssl=1)
 
 After pressing the "**Choose**" button, navigate to your Downloads
 folder and select the ESP8266 *.bin* file:
 
-![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=813.75%2C490&ssl=1){.aligncenter
-.size-full .wp-image-74916 width="813" height="490"
-sizes="(max-width: 813px) 100vw, 813px"
-srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?w=954&ssl=1 954w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=300%2C181&ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=768%2C462&ssl=1 768w"}
+![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=813.75%2C490&ssl=1)
 
 Having all the settings selected, hold-down the "**BOOT/FLASH**" button in your ESP8266 board:
 
-![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?resize=547%2C385&ssl=1){.aligncenter
-.size-full .wp-image-75011 width="547" height="385"
-sizes="(max-width: 547px) 100vw, 547px"
-srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?w=547&ssl=1 547w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?resize=300%2C211&ssl=1 300w"}
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?resize=547%2C385&ssl=1)
 
 While holding down the "**BOOT/FLASH**", click the "**ok**" button in the burn firmware window:
 
-![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?resize=452%2C282&ssl=1){.aligncenter
-.size-full .wp-image-74945 width="452" height="282"
-sizes="(max-width: 452px) 100vw, 452px"
-srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?w=452&ssl=1 452w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?resize=300%2C187&ssl=1 300w"}
+![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?resize=452%2C282&ssl=1)
 
 When the "**EraseFlash**" process begins, you can release the "**BOOT/FLASH**" button. After a few seconds, the firmware will be
 flashed into your ESP8266 board.
 
-![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?resize=602%2C182&ssl=1){.aligncenter
-.size-full .wp-image-74913 width="602" height="182"
-sizes="(max-width: 602px) 100vw, 602px"
-srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?w=602&ssl=1 602w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?resize=300%2C91&ssl=1 300w"}
+![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?resize=602%2C182&ssl=1)
 
 **Note:** if the "**EraseFlash**" bar doesn't move and you see an error message saying "**erase false.**", it means that your ESP8266 wasn't in flashing mode. You need to repeat all the steps described earlier and hold the "**BOOT/FLASH**" button again to ensure that your ESP8266 goes into flashing mode.
 
