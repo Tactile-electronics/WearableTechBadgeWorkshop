@@ -215,7 +215,7 @@ flashed into your ESP8266 board.
 
 **Note:** if the "**EraseFlash**" bar doesn't move and you see an error message saying "**erase false.**", it means that your ESP8266 wasn't in flashing mode. You need to repeat all the steps described earlier and hold the "**BOOT/FLASH**" button again to ensure that your ESP8266 goes into flashing mode.
 
-<img width="400" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/micropython-erase-false-message-failed.png?resize=143%2C120&ssl=1">
+<img height="100" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/micropython-erase-false-message-failed.png?resize=143%2C120&ssl=1">
 
 
 You should see the python prompt in the bottom console window
@@ -230,7 +230,7 @@ We generally prototype code by running it line by line, a bit like having a conv
 
 The bottom window of uPyCraft is the console. This gives you messages telling you if you've downloaded things correctly, any issues with the board so you know whats going on.
 
-<img src="images/session2/uPyCraftConnectIcon.png" width="150">
+<img src="images/session2/uPyCraftConnectIcon.png" width="50">
 
 Once you connect to the board using the connect icon above you'll see the python prompt
 
@@ -240,7 +240,9 @@ Once you connect to the board using the connect icon above you'll see the python
 ```
 You can now 'talk' to the board. Start with typing
 
-`print("hello")` You should get a reply hello on the next line!
+`print("hello")`
+
+You should get a reply hello on the next line!
 
 ### Controlling the onboard blue LED
 
@@ -269,32 +271,22 @@ Annoyingly defining the pin like this means off has no effect, but we can use Si
 now things will work more intuitively if we use Led2 instead!
 
 `Led2.off()`
+
 `Led2.on()`
 
-
-### NeoPixels
-
-To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+VCC` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them.
-
-
-NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script to your board and with a quick
-
-### Single NeoPixel Use
-
-I'll update this by the end of the week so you can play at home.
-
-```
-from lights import *
-```
 ### Making Permanent Changes
 
 So far we've just been sending messages over the serial console in the bottom window of the uPyCraft IDE.
 
-For our micropython code to work after we've disconnedted you need to make a `main.py` file on the board. To do this once connected to your ESP8266 you need to write your code in a folder called  into the folder called `device` on the top right of `uPyCraft`
+For our micropython code to work after we've disconnected you need to make a `main.py` file on the board.
+
+When your board is powered up it 'boots up' like any computer and runs a file called `boot.py`. Dont change this its just for setting things up. Then it runs whatever code sits in `main.py`. If theres a loop in there it will keep it running until interrupted by pressing `RST` to re-boot or if you send a `ctrl` + `c` command in the console over serial.
+
+<img src="images/session2/uPyCraftNewFileIcon.png" width="50">
 
 Make a new file with the icon above. If asked call it `main.py`
 
-Copy and paste the below into it and save it.
+Copy and paste the code below into it and save it as `main.py` if necessary. Try to follow the spaces exactly. Returning (pressing enter) at the end of the `while True:` line automatically indents the text correctly. These indents of 'whitespace' are important to micropython to know when a loop starts and ends.
 
 ```
 from machine import Signal, Pin
@@ -311,7 +303,86 @@ while True:
     sleep(0.25)
 ```
 
-You should be already connected to the board. Click the big arrow icon on the right to `Download & Run` the code
+What we are doing here is called a while loop: basically `while True:` means 'while the python file is running, run the following commands forever unless interrupted. When you get to the end of the list, start back at the top'.
+
+Within this loop we can add other conditional loops so that sensor inputs etc can affect changes to our LEDs. We'll do that in the next session.
+
+#### Send the `main.py` code to the board
+
+<img src="images/session2/uPyCraftRunIcon.png" width="50" align="right">
+
+You should be already connected to your board. If not make sure you are. If the python prompt `>>>` in the console or disconnect icon is showing (a broken chain) then you're all connected. Click the big arrow icon on the right to `Download & Run` the code
+
+You should see the LED flicker as the file is saved, and then flash on and off as expected. Try changing the values of sleep and what effects you can get.
+
+
+### NeoPixels
+
+NeoPixels are cheap addressable RGB LEDs and micropython has a library module called NeoPixel just for that.
+
+To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them like we did in the first session. Use the `GND` and `3V3` pins that are on the same side of the board as `D1`
+
+We'll solder 3 wires to our single NeoPixel and connect to the breadboard.
+
+Once connected correctly, you can power and control the colour and brightness of your NeoPixel.
+
+### Single NeoPixel Use
+
+NeoPixels, also known as WS2812 LEDs, are full-colour LEDs that are connected in serial, are individually addressable, and can have their red, green and blue components set between 0 and 255. They require precise timing to control them and there is a special neopixel module to do just this.
+
+To create a NeoPixel object do the following. Like before we are going to send commands line by line in the python prompt using the console, the bottom window of uPyCraft.
+
+```
+>>> import machine, neopixel
+>>> np = neopixel.NeoPixel(machine.Pin(5), 1)
+```
+
+This configures a NeoPixel on `GPIO5` marked `D1` on the board with 1 RGB NeoPixel LED. You can adjust the “4” (pin number) and the “1” (number of pixel) to suit other NeoPixels which you'll use later.
+
+To set the colour of pixels use:
+```
+>>> np[0] = (255, 0, 0) # set to red, full brightness
+```
+Then use the write() method to output the colours to the LEDs:
+```
+>>> np.write()
+```
+Other commands you can try:
+
+```
+>>> np[0] = (0, 128, 0) # set to green, half brightness
+>>> np[0] = (0, 0, 64)  # set to blue, quarter brightness
+```
+
+Don't forget to `np.write()`
+
+### Lets write a `main.py` for our NeoPixel
+
+Now try to write a loop like we did last time changing with `while True:`
+
+Here's an example
+
+```
+from machine import Pin
+from neopixel import NeoPixel
+import time
+
+n = 5 # Set the number of pixels on your NeoPixel
+pin = Pin(5, Pin.OUT)   # set GPIO5 (D1) to output to drive NeoPixels
+np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO0 for 7 pixels
+
+
+while True:
+    np[0] = (255, 255, 255) # set the first pixel to white
+    np.write() # write data to all pixels
+    np[0] = (0, 0, 0) # set the first pixel to nothing (black)
+    np.write()              # write data to all pixels
+
+```
+
+Try changing the colours.
+
+Next we will loop through colours using a `for` loop
 
 #### Components
 
@@ -341,19 +412,17 @@ Multiple Neopixel control and Re-visiting our sensor circuit but this time combi
 
 ### Mutliple NeoPixels
 
-```
-from lights import *
-```
+This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html):
 
-You can run this example code from the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html):
+Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script from our workshop page to your board.
 
-Once the `lights.py` file is on board, re-log on to your board and you can run these commands:
+Once the `lights.py` file is on board, re-boot the  board with the `RST` button and you should now be able to run these commands in the uPyCraft console window:
 
 `cycle()`, `bounce()`, `fade()` and `clear()`
 
 There's also a [`main.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/main.py) you can add so they run on booting the board.
 
-Try writing your own combinations of these functions on a loop and try changing the for loops to cycle through colours
+Try writing your own combinations of these functions on a loop and change the for loops to cycle through colours
 
 
 ```
@@ -361,9 +430,9 @@ from machine import Pin
 from neopixel import NeoPixel
 import time
 
-n = 7 # Set the number of pixels on your NeoPixel
-pin = Pin(5, Pin.OUT)   # set GPIO5 (D1) to output to drive NeoPixels
-np = NeoPixel(pin, 7)   # create NeoPixel driver on GPIO0 for 7 pixels
+n = 5 # Set the number of pixels on your NeoPixel
+pin = Pin(5, Pin.OUT)   # set GPIO5 pin (D1) to output to drive the NeoPixels
+np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO5 for n pixels
 np[0] = (255, 255, 255) # set the first pixel to white
 np.write()              # write data to all pixels
 np[0] = (0, 0, 0) # set the first pixel to nothing (black)

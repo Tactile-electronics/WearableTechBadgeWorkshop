@@ -3,9 +3,9 @@ from machine import Pin
 from neopixel import NeoPixel
 import time
 
-n = 7
+n = 5 # Number of pixels
 pin = Pin(5, Pin.OUT)   # set GPIO5 (D1) to output to drive NeoPixels
-np = NeoPixel(pin, 7)   # create NeoPixel driver on GPIO0 for 7 pixels
+np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO0 for n pixels
 np[0] = (255, 255, 255) # set the first pixel to white
 np.write()              # write data to all pixels
 np[0] = (0, 0, 0) # set the first pixel to nothing (black)
