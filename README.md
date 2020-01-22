@@ -272,12 +272,6 @@ now things will work more intuitively if we use Led2 instead!
 `Led2.on()`
 
 
-### Making Permanent Changes
-
-So far we've just been sending messages over the serial console in the bottom window of the uPyCraft IDE.
-
-For our micropython code to work after we've disconnedted you need to make a `main.py` file on the board. To do this once connected to your ESP8266 you need to write your code in a folder called  into the folder called `device` on the top right of `uPyCraft`
-
 ### NeoPixels
 
 To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+VCC` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them.
@@ -292,6 +286,32 @@ I'll update this by the end of the week so you can play at home.
 ```
 from lights import *
 ```
+### Making Permanent Changes
+
+So far we've just been sending messages over the serial console in the bottom window of the uPyCraft IDE.
+
+For our micropython code to work after we've disconnedted you need to make a `main.py` file on the board. To do this once connected to your ESP8266 you need to write your code in a folder called  into the folder called `device` on the top right of `uPyCraft`
+
+Make a new file with the icon above. If asked call it `main.py`
+
+Copy and paste the below into it and save it.
+
+```
+from machine import Signal, Pin
+from time import sleep
+
+ledPin2 = machine.Pin(2, machine.Pin.OUT)
+led2 = Signal(ledPin2, invert=True)
+led2.off()
+
+while True:
+    led2.on()
+    sleep(0.5)
+    led2.off()
+    sleep(0.25)
+```
+
+You should be already connected to the board. Click the big arrow icon on the right to `Download & Run` the code
 
 #### Components
 
