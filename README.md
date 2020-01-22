@@ -126,25 +126,157 @@ You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython
 
 <img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?w=750&ssl=1" width="600">
 
-You might need `CP2102` USB Module drivers to work with our ESP8266's which are the `CP2102` variants which you can get from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) or in the workshop repo [here](drivers)
+You will need `CP2102` USB Module drivers to work with our ESP8266's which are the `CP2102` variants which you can get from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers). We've also archived the windows & macos drivers in the workshop repo [here](drivers/CP2102)
 
-Linux distributions often include built-in CP2102 drivers, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
+Linux distributions often include CP2102 drivers built in, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
 
-We use these drivers 
+We use these drivers so we can access our ESP8266 boards over their serial port over USB.
 
 ### Software
 
-We are using [uPyCraft](https://randomnerdtutorials.com/flash-upload-micropython-firmware-esp32-esp8266/) 
+There are a few ways to send commands and files to the ESP8266. We are using some new software we've found, [uPyCraft](https://randomnerdtutorials.com/flash-upload-micropython-firmware-esp32-esp8266/) which is easier for beginners. It let's you send commands and talk to the board line by line, and save complete files to the board that run when you are ready to deploy your project and run off batteries.
+
+There's some more advanced alternatives using the [command line below](#command-line-alternatives-to-upycraft)
+
+### Setting up uPyCraft
+
+More To Follow.
+
+If you follow the links on the random nerd tutorials it seems to imply that you must install python on your machine first. You don't need to do this!
+
+[Windows](https://randomnerdtutorials.com/uPyCraftWindows)
+[Mac](https://randomnerdtutorials.com/uPyCraftMac) (Ensure you allow apps to be downloaded from anywhere in your system security settings
+[Linux](https://randomnerdtutorials.com/uPyCraftLinux)
+
+### Sending the micropython firmware to the board
+
+You need to send the micropython software to the board first. [Download it here](micropython) and note it's location. You need to click on the `.bin` file and then you will get a download box option on the webpage.
+
+#### Selecting Serial Port
+
+Go to **Tools** \> **Serial** and select your ESP8266 COM port (in our case it's COM5).
+
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?resize=692%2C576&ssl=1){.aligncenter
+.size-full .wp-image-74920 width="692" height="576"
+sizes="(max-width: 692px) 100vw, 692px"
+srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?w=692&ssl=1 692w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Serial-Port-COM5.png?resize=300%2C250&ssl=1 300w"}
+
+[**Important:**]{style="color: #ff0000;"} if you plug your ESP8266 board to your computer, but you can't find the ESP8266 Port available in your uPyCraft IDE, it might be one of these two problems: **1.** USB drivers missing or **2.** USB cable without data wires.
+
+**1.** If you don't see your ESP's COM port available, this often means you don't have the USB drivers installed. Take a closer look at the chip next to the voltage regulator on board and check its name.
+
+The [ESP8266 ESP-12E NodeMCU](https://makeradvisor.com/tools/esp8266-esp-12e-nodemcu-wi-fi-development-board/) board uses the **CP2102** chip.
+
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?resize=750%2C388&ssl=1){.aligncenter .size-full .wp-image-75010 width="750" height="388"
+sizes="(max-width: 750px) 100vw, 750px"
+srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?w=750&ssl=1 750w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?resize=300%2C155&ssl=1 300w"}
+
+After they are installed, restart the uPyCraft IDE and you should see the COM port in the **Tools** menu.
+
+**2.** If you have the drivers installed, but you can't see your device, double-check that you're using a USB cable with data wires.
+
+USB cables from powerbanks often don't have data wires (they are charge only). So, your computer will never establish a serial communication with your ESP8266. Using a a proper USB cable should solve your problem.
+
+#### Selecting the Board
+
+Go to **Tools** \> **Board**. For this tutorial, we assume that you're using the ESP8266, so make sure you select the "**esp8266**" option:
+
+![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?resize=692%2C576&ssl=1){.aligncenter
+.size-full .wp-image-74919 width="692" height="576"
+sizes="(max-width: 692px) 100vw, 692px"
+srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?w=692&ssl=1 692w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Select-Board-ESP8266.png?resize=300%2C250&ssl=1 300w"}
+
+### Flashing/Uploading MicroPython Firmware
+
+Finally, go to **Tools** \> **BurnFirmware** menu to flash your ESP32 with MicroPython.
+
+![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?resize=693%2C576&ssl=1){.aligncenter
+.size-full .wp-image-74921 width="693" height="576"
+sizes="(max-width: 693px) 100vw, 693px"
+srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?w=693&ssl=1 693w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/uPyCraft-IDE-Tools-burn-Firmware.png?resize=300%2C249&ssl=1 300w"}
+
+Select all these options to flash the ESP8266 board:
+
+-   board: **esp8266**
+-   burn\_addr: **0x0**
+-   erase\_flash: **yes**
+-   com: **COMX** (in our case it's COM5)
+-   Firmware: Select `Users` and choose the `ESP8266 .bin`
+file you downloaded earlier
+
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?resize=692%2C576&ssl=1){.aligncenter
+.size-full .wp-image-74944 width="692" height="576"
+sizes="(max-width: 692px) 100vw, 692px"
+srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?w=692&ssl=1 692w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/flash-firmware-esp8266-prepare.png?resize=300%2C250&ssl=1 300w"}
+
+After pressing the "**Choose**" button, navigate to your Downloads
+folder and select the ESP8266 *.bin* file:
+
+![](https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=813.75%2C490&ssl=1){.aligncenter
+.size-full .wp-image-74916 width="813" height="490"
+sizes="(max-width: 813px) 100vw, 813px"
+srcset="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?w=954&ssl=1 954w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=300%2C181&ssl=1 300w, https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/select-esp8266-bin-file-uPyCraft-IDE.png?resize=768%2C462&ssl=1 768w"}
+
+Having all the settings selected, hold-down the "**BOOT/FLASH**" button in your ESP8266 board:
+
+![](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?resize=547%2C385&ssl=1){.aligncenter
+.size-full .wp-image-75011 width="547" height="385"
+sizes="(max-width: 547px) 100vw, 547px"
+srcset="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?w=547&ssl=1 547w, https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-flash-button.jpg?resize=300%2C211&ssl=1 300w"}
+
+While holding down the "**BOOT/FLASH**", click the "**ok**" button in the burn firmware window:
+
+![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?resize=452%2C282&ssl=1){.aligncenter
+.size-full .wp-image-74945 width="452" height="282"
+sizes="(max-width: 452px) 100vw, 452px"
+srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?w=452&ssl=1 452w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/OK-flash-firmware-esp8266.png?resize=300%2C187&ssl=1 300w"}
+
+When the "**EraseFlash**" process begins, you can release the "**BOOT/FLASH**" button. After a few seconds, the firmware will be
+flashed into your ESP8266 board.
+
+![](https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?resize=602%2C182&ssl=1){.aligncenter
+.size-full .wp-image-74913 width="602" height="182"
+sizes="(max-width: 602px) 100vw, 602px"
+srcset="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?w=602&ssl=1 602w, https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-firmware-flashing-message.png?resize=300%2C91&ssl=1 300w"}
+
+**Note:** if the "**EraseFlash**" bar doesn't move and you see an error message saying "**erase false.**", it means that your ESP8266 wasn't in flashing mode. You need to repeat all the steps described earlier and hold the "**BOOT/FLASH**" button again to ensure that your ESP8266 goes into flashing mode.
+
+<img width="400" src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/micropython-erase-false-message-failed.png?resize=143%2C120&ssl=1">
+
+
+You should see the python prompt in the bottom console window
+
+```
+>>>
+```
 
 ### Micropython Command Walkthrough
 
-In python like we saw earlier, we import the tools we need to do the various things we need, with microbit, most of it is already there.
+We generally prototype code by running it line by line, a bit like having a conversation with your board. We like the way that weirdly makes you feel more connected to it and we think it might help you learn. After that we can make and send python files to run independently of our computers.
+
+The bottom window of uPyCraft is the console. This gives you messages telling you if you've downloaded things correctly, any issues with the board so you know whats going on.
+
+<img src="images/session2/uPyCraftConnectIcon.png" width="150">
+
+Once you connect to the board using the connect icon above you'll see the python prompt
+
+
+```
+>>>
+```
+You can now 'talk' to the board. Start with typing
+
+`print("hello")` You should get a reply hello on the next line!
+
+### Controlling the onboard blue LED
+
+In python we `import` the tools inside micropython that we need to do what we want.
 
 Get the machine module to control our ins and outs
 
 `import machine`
 
-Lets define a Pin as an output, using the onboard Pin no. 2
+Lets define a Pin as an output, using the onboard LED which is called Pin no. 2
 
 `ledPin2 = machine.Pin(2, machine.Pin.OUT)`
 
@@ -157,6 +289,7 @@ Now try:
 Annoyingly defining the pin like this means off has no effect, but we can use Signal to abstract away this.
 
 `from machine import Signal`
+
 `Led2 = Signal(ledPin2, invert=True)`
 
 now things will work more intuitively if we use Led2 instead!
@@ -177,6 +310,16 @@ To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+VCC` on t
 
 
 NeoPixels are addressable RGB LEDs and micropython has a library module just for that! Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script to your board and with a quick
+
+### Single NeoPixel Use
+
+More to follow for next week!
+
+```
+from lights import *
+```
+
+### Mutliple NeoPixels
 
 ```
 from lights import *
@@ -366,6 +509,13 @@ To get connected on Windows you could also use PUTTY
 
 Windows Download [PuTTY](https://putty.org/) to connect your ESP8266 to your computer over USB-Serial and be able to send commands to control and set it up.
 
+Open PuTTY and select `serial` and choose a COM port usually COM3 or COM7. Then change the baud rate to 115200 and leave the rest as defaults and select open. This will open a black screen with the python prompt `>>>`. You can now 'talk' to the board. Start with typing
+
+```
+print("hello!")
+```
+If you get hello printed on the next line you are all setup!
+
 Linux - Use the built in `screen`, `minicom` or Putty using `$ sudo apt-get install putty` in your Linux Terminal. I'd recommend screen.
 
 Mac - Download [PuTTY](https://putty.org/) or use the built-in `Applications/Terminal` and `screen`
@@ -374,11 +524,11 @@ Mac - Download [PuTTY](https://putty.org/) or use the built-in `Applications/Ter
 
 On macos and Linux you can just use a Terminal and `screen`. If your linux doesnt have screen install with `sudo apt-get install screen` or `brew install screen` on a mac after setting up [HomeBrew](https://brew.sh/)
 
-`$ ls /dev/tty*`
+`$ ls /dev/tty.*`
 
 to list your usb devices.
 
-`$ screen /dev/device_name baud-rate`
+`$ screen /dev/device-name baud-rate`
 is the general format.
 
 `$ screen -S wearable /dev/tty.SLAB_USBtoUART 115200`
@@ -410,7 +560,6 @@ and
 
 Now reboot, and if your file is correct it will run the `boot.py` script (don't worry about that for now it just sets up the board and python) and then your `main.py` file should run!
 
-We generally prototype code by running it line by line, a bit like having a *conversation* with your board. I like the way that weirdly makes you feel more connected to it and we think it might help you learn.
 
 
 ### Ampy
