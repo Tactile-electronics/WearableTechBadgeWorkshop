@@ -365,9 +365,9 @@ Here's an example
 ```
 from machine import Pin
 from neopixel import NeoPixel
-import time
+from time import sleep
 
-n = 5 # Set the number of pixels on your NeoPixel
+n = 1 # Set the number of pixels on your NeoPixel
 pin = Pin(5, Pin.OUT)   # set GPIO5 (D1) to output to drive NeoPixels
 np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO0 for 7 pixels
 
@@ -375,9 +375,10 @@ np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO0 for 7 pixels
 while True:
     np[0] = (255, 255, 255) # set the first pixel to white
     np.write() # write data to all pixels
+    sleep(1)
     np[0] = (0, 0, 0) # set the first pixel to nothing (black)
     np.write()              # write data to all pixels
-
+    sleep(0.5)
 ```
 
 Try changing the colours.
