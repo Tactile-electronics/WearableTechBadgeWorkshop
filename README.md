@@ -126,7 +126,9 @@ You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython
 
 <img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?w=750&ssl=1" width="600">
 
-You will need `CP2102` USB Module drivers to work with our ESP8266's which are the `CP2102` variants which you can get from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers). We've also archived the windows & macos drivers in the workshop repo [here](drivers/CP2102)
+You will need `CP2102` USB Module drivers to work with our ESP8266's which are the `CP2102` variants which you can get from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers). Basically there's a square chip on the board which is the `CP2102`, other variants have an oblong chip called the `CH430` series which need [different drivers linked here](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all). Always check which chipset on ESP8266 you're buying. Generally we've found the `CP2102` the most reliable and work with the generally useful & excellent [ShrimpingIt](http://shrimping.it) kits that may prove useful if you need cut price arduino learning kits.
+
+[CP2102 Drivers Archive here](drivers/CP2102)
 
 Linux distributions often include CP2102 drivers built in, although Linux user accounts may need membership of the 'dialout' or 'serial' permission groups to access the device.
 
@@ -134,47 +136,84 @@ We use these drivers so we can access our ESP8266 boards over their serial port 
 
 ### Software
 
-There are a few ways to send commands and files to the ESP8266. We are using some new software we've found, [uPyCraft](https://randomnerdtutorials.com/flash-upload-micropython-firmware-esp32-esp8266/) which is easier for beginners. It let's you send commands and talk to the board line by line, and save complete files to the board that run when you are ready to deploy your project and run off batteries.
+Now you've got drivers for interfacing with the board with serial over your USB data cable, there are a few ways to send commands and files to the ESP8266. We are using some new software we've found, **uPyCraft** which is easiest for beginners. It's an IDE (Integrated Development Environment) i.e. an application where you can write and develop code and send it to the ESP8266 (it also works for microbits and ESP32 more on those later). It also let's you send commands to the board line by line in the console, a window at the bottom, which also returns (sends a message in response to what you do to the board) error messages and other useful feedback. You can manage and save complete files to the board that run when you are ready to deploy your project and run off batteries.
 
 There's some more advanced alternatives using the [command line below](#command-line-alternatives-to-upycraft)
 
 ### Setting up uPyCraft
 
-More To Follow.
+If you follow the links on the random nerd tutorials it seems to imply that you must install python on your machine first. **You do not need python to use uPyCraft!** Just hit the links to the software installs below.
 
-If you follow the links on the random nerd tutorials it seems to imply that you must install python on your machine first. **You don't need to do this!** Just hit the links to the software below.
+ * [Windows](https://randomnerdtutorials.com/uPyCraftWindows) Tested on Windows 10
+ * [Mac](https://randomnerdtutorials.com/uPyCraftMac) (Ensure you allow apps to be downloaded from anywhere in your system security settings)
+ * [Linux](https://randomnerdtutorials.com/uPyCraftLinux) Currently only running on 16.x Ubuntu
 
-[Windows](https://randomnerdtutorials.com/uPyCraftWindows)
-[Mac](https://randomnerdtutorials.com/uPyCraftMac) (Ensure you allow apps to be downloaded from anywhere in your system security settings
-[Linux](https://randomnerdtutorials.com/uPyCraftLinux)
+### Flashing the micropython environment to the board
 
-### Sending the micropython firmware to the board
+When you first get your board you need to send or 'flash' the micropython environment to it first.
 
-You need to send the micropython software to the board first. [Download it here](micropython) and note it's location. You need to click on the `.bin` file and then you will get a download box option on the webpage.
+[Download the `.bin` file here](micropython) and note it's location. You need to click on the `.bin` file and then you will get a download box option on the webpage.
 
 #### Selecting Serial Port
 
-Go to **Tools** \> **Serial** and select your ESP8266 COM port (in our case it's COM5).
+Plug in your ESP8266 with you usb data cable. Open uPyCraft and select **Tools/Serial** and select your ESP8266 COM port (on a PC Or Linux it's a COM number like `COM5` or `COM3`, on Mac it should be something like `tty.SLAB_USBtoUART`).
 
 <img src="images/session2/espSetup2.png" width="600">
 
-[**Important:**]{style="color: #ff0000;"} if you plug your ESP8266 board to your computer, but you can't find the ESP8266 Port available in your uPyCraft IDE, it might be one of these two problems: **1.** USB drivers missing or **2.** USB cable without data wires.
+If you plug your ESP8266 board to your computer, but you can't find the ESP8266 Port available in your uPyCraft IDE, it might be one of these two problems:
 
-**1.** If you don't see your ESP's COM port available, this often means you don't have the USB drivers installed. Take a closer look at the chip next to the voltage regulator on board and check its name.
+1. USB drivers missing or
+1. USB cable without data wires.
+1. If you don't see your ESP's COM port available, this often means you don't have the USB drivers installed. Take a closer look at the chip next to the voltage regulator on board and check its name.
 
 The [ESP8266 ESP-12E NodeMCU](https://makeradvisor.com/tools/esp8266-esp-12e-nodemcu-wi-fi-development-board/) board uses the **CP2102** chip.
 
 <img src="images/session2/espSetup1.jpeg" width="600">
 
-After they are installed, restart the uPyCraft IDE and you should see the COM port in the **Tools** menu.
+Go back to the [Connection Up Step](#connecting-up) Once they are installed, restart the uPyCraft IDE and you should see the COM port in the **Tools** menu.
 
-**2.** If you have the drivers installed, but you can't see your device, double-check that you're using a USB cable with data wires.
+1. If you have the drivers installed, but you can't see your device, double-check that you're using a USB cable with data wires.
 
-USB cables from powerbanks often don't have data wires (they are charge only). So, your computer will never establish a serial communication with your ESP8266. Using a a proper USB cable should solve your problem.
+USB cables from powerbanks often don't have data wires (they are charge only). So, your computer will never establish a serial communication with your ESP8266. Using a proper USB data cable should solve your problem.
 
-#### Selecting the Board
+#### Flashing the Board
+
+When you connect for the first time to the serial conection the steps described below happen automatically and you get a window pop-up like below, prompting you to flash the board with the `.bin` file you downloaded earlier. (The full set of updated firmwares for future ref are [here](http://micropython.org/download#esp8266))
+
+<img src="images/session2/espFlash_auto-pop-up.png" width="300">
+
+If this happens click on all the options so they look like the above with your com portname `COMx` and select:
+
+-   board: **esp8266**
+-   burn\_addr: **0x0**
+-   erase\_flash: **yes**
+-   com: **COMx** (in our case it's COM5)
+-   Firmware: Select `Users` and choose the `.bin`
+file you downloaded earlier
+
+<img src="images/session2/espSetup9.png" width="600">
+
+Click `ok` and a window will show you 'burning' the firmware onto the board. You should get an ok message when it's finished. If you get an error message in the console (window at the bottom with the python `>>>` prompt and other messages) then try again by re-selecting the Serial port in **Tools > Board**.
+
+<img src="images/session2/espSetup10.png" width="100">
+
+
+You should see the python prompt in the bottom console window
+
+```
+>>>
+```
+
+That's it you're ready to send commands to the board and control LED's!
+
+### Flashing the board from the Menu's
+
+The following is a walkthrough if you have already flashed the board and want to start again, or change the firmware or the pop-up to prompt you has not turned up and you cant see the python `>>>` prompt in the console.
+
+In this walkthrough it suggests that you need to hold-down the "BOOT/FLASH" button on your ESP8266 board to put it in the correct mode, but we've found that this is not necessary. We'll leave it in the walkthrough for now in case you have issues and find that extra step is helpful. Otherwise just follow the instructions without touching the board.
 
 Go to **Tools** \> **Board**. For this tutorial, we assume that you're using the ESP8266, so make sure you select the "**esp8266**" option:
+
 
 <img src="images/session2/espSetup3.png" width="600">
 
@@ -224,35 +263,45 @@ You should see the python prompt in the bottom console window
 >>>
 ```
 
-### Micropython Command Walkthrough
+That's it you're ready to send commands to the board and control LED's!
 
-We generally prototype code by running it line by line, a bit like having a conversation with your board. We like the way that weirdly makes you feel more connected to it and we think it might help you learn. After that we can make and send python files to run independently of our computers.
+## Micropython Command Walkthrough Talking to Your Board
+
+We generally prototype code by running it line by line, a bit like having a conversation with your board. We like the way that weirdly makes you feel more connected to it and we think it might help you learn. After that we can make and send python files to run independently of our computers. So bear with us and start your conversations and instructions.
+
+<img src="images/session2/uPyCraft_console_window.png" width="300">
 
 The bottom window of uPyCraft is the console. This gives you messages telling you if you've downloaded things correctly, any issues with the board so you know whats going on.
 
 <img src="images/session2/uPyCraftConnectIcon.png" width="50">
 
-Once you connect to the board using the connect icon above you'll see the python prompt
-
+Once you connect to the board using the connect icon above you'll see the python prompt in the console window at the bottom of uPyCraft.
 
 ```
 >>>
 ```
+
+You'll notice that the connect icon has changed to disconnect so use that icon if you need to disconnect
+<img src="images/session2/esp_disconnect_icon.png" width="50" align="right">
+<br>
+
 You can now 'talk' to the board. Start with typing
 
 `print("hello")`
 
 You should get a reply hello on the next line!
 
+All functions like `print()` expect brackets and in some cases additional variables like a string of characters `"hello"`
+
 ### Controlling the onboard blue LED
 
-In python we `import` the tools inside micropython that we need to do what we want.
+In python we `import` the tools inside micropython that we need to do what we want. This is done by importing modules which are like libraries of tools for using the board. Once imported you can call on them by using so-called dot notation. `machine.Pin()`. In that case you're saying "Ive imported `machine` so now go into the `machine` library and get the function called `Pin()`". Later you'll be able to make your own modules for accessing patterns of LEDs etc. So if you made code for making a flashing LED you could call it `myFlash.py` and import it by `import myFlash` and then you can run your own custom commands, but we'll come back to that.
 
 Get the machine module to control our ins and outs
 
 `import machine`
 
-Lets define a Pin as an output, using the onboard LED which is called Pin no. 2
+Lets define a Pin as an output, using the onboard LED which is called Pin no. 2.
 
 `ledPin2 = machine.Pin(2, machine.Pin.OUT)`
 
@@ -262,9 +311,11 @@ Now try:
 
 `ledPin2.off()`
 
-Annoyingly defining the pin like this means off has no effect, but we can use Signal to abstract away this.
+Annoyingly defining the pin like this means off has no effect, because there's no reference for which is the default position. We can use another tool from `machine` called `Signal` to abstract away this problem.
 
 `from machine import Signal`
+
+We import like this so that you don't have to use dot notation and say `machine.Signal`, you can just use Signal.
 
 `Led2 = Signal(ledPin2, invert=True)`
 
@@ -320,6 +371,8 @@ You should see the LED flicker as the file is saved, and then flash on and off a
 
 NeoPixels are cheap addressable RGB LEDs and micropython has a library module called NeoPixel just for that.
 
+<span style="background-color:yellow">Picture of the single NeoPixel wiring</span>
+
 To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them like we did in the first session. Use the `GND` and `3V3` pins that are on the same side of the board as `D1`
 
 We'll solder 3 wires to our single NeoPixel and connect to the breadboard.
@@ -369,11 +422,11 @@ from time import sleep
 
 n = 1 # Set the number of pixels on your NeoPixel
 pin = Pin(5, Pin.OUT)   # set GPIO5 (D1) to output to drive NeoPixels
-np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO0 for 7 pixels
+np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO0 for n pixels
 
 
 while True:
-    np[0] = (255, 255, 255) # set the first pixel to white
+    np[0] = (255, 255, 255) # set the first pixel to white, note computers in a list of numbers, the first number in the list is 0
     np.write() # write data to all pixels
     sleep(1)
     np[0] = (0, 0, 0) # set the first pixel to nothing (black)
@@ -411,9 +464,11 @@ TOTAL|||£8.63|
 Multiple Neopixel control and Re-visiting our sensor circuit but this time combine with our ESP8266 boards and controlling our LEDs
 
 
-### Mutliple NeoPixels
+## Mutliple NeoPixels
 
-This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html):
+This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html). NeoPixels get really handy when you get multiple pixels in interesting arrangements, in a row like with Jackies example circuit or in a circle, which we are going to play with today. The ESP8266 can handle quite a few without having to add any protective circuits with capacitors and resistors (remember protecting our lowly red LED?). 7 can be handled safely but big strips might need a seperate power supply. You'll have to look into this [NeoPixel Uberguide to work that out](https://learn.adafruit.com/adafruit-neopixel-uberguide/the-magic-of-neopixels) and in the final session we can talk about that and draw on wider DoESLiverpool expertise.
+
+### Programming a Multi Neopixel Example
 
 Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script from our workshop page to your board.
 
@@ -421,9 +476,9 @@ Once the `lights.py` file is on board, re-boot the  board with the `RST` button 
 
 `cycle()`, `bounce()`, `fade()` and `clear()`
 
-There's also a [`main.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/main.py) you can add so they run on booting the board.
+There's also a [`main.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/main.py) you can add so they run on a loop, on booting the board.
 
-Try writing your own combinations of these functions on a loop and change the for loops to cycle through colours
+Try writing your own combinations of these functions on a loop and change the for loops to cycle through colours. I've tried to comment the code to help you get the maths behind each loop as they use [basic and the lesser known math operators in python](https://codingexplained.com/coding/python/basic-math-operators-in-python). You can just hack around the numbers and see what happens!
 
 
 ```
@@ -431,21 +486,21 @@ from machine import Pin
 from neopixel import NeoPixel
 import time
 
-n = 5 # Set the number of pixels on your NeoPixel
-pin = Pin(5, Pin.OUT)   # set GPIO5 pin (D1) to output to drive the NeoPixels
-np = NeoPixel(pin, n)   # create NeoPixel driver on GPIO5 for n pixels
+n = 7 # Set the number of pixels on your NeoPixel
+pin = Pin(5, Pin.OUT)   # setup GPIO5 pin (D1) as output to drive the NeoPixels
+np = NeoPixel(pin, n)   # create NeoPixel object on GPIO5, for n pixels
 np[0] = (255, 255, 255) # set the first pixel to white
 np.write()              # write data to all pixels
 np[0] = (0, 0, 0) # set the first pixel to nothing (black)
 np.write()              # write data to all pixels
 
 def cycle():
-    for i in range(4 * n):
-        for j in range(n):
+    for i in range(4 * n): # setup a loop that lasts 4 times the number of NeoPixels and turns each LED on
+        for j in range(n): # setup a nested loop that goes thru each pixel and turns the other LEDs off
             np[j] = (0, 0, 0)
-        np[i % n] = (255, 255, 255)
-        np.write()
-        time.sleep_ms(25)
+        np[i % n] = (255, 255, 255) # turns one of n LEDs white in sequence with modulo ie 1 % 7 = 0, 7 % 7 = 0..8 % 7 = 1, 9 & 7 = 2..13 % 7 = 6, 14 % 7 = 0, and onwards to 4 * n
+        np.write() # write to all LEDs
+        time.sleep_ms(25) # sleep for 25 microseconds
 
 def bounce():
     for i in range(4 * n):
