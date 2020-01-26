@@ -124,7 +124,7 @@ You can refer to the [MicroPython tutorial for ESP8266](https://docs.micropython
 
 #### Connecting up
 
-<img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/10/esp8266-cp2102-driver.jpg?w=750&ssl=1" width="600">
+<img src="images/session2/espSetup1.jpeg" width="600">
 
 You will need `CP2102` USB Module drivers to work with our ESP8266's which are the `CP2102` variants which you can get from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers). Basically there's a square chip on the board which is the `CP2102`, other variants have an oblong chip called the `CH430` series which need [different drivers linked here](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all). Always check which chipset on ESP8266 you're buying. Generally we've found the `CP2102` the most reliable and work with the generally useful & excellent [ShrimpingIt](http://shrimping.it) kits that may prove useful if you need cut price arduino learning kits.
 
@@ -142,7 +142,7 @@ There's some more advanced alternatives using the [command line below](#command-
 
 ### Setting up uPyCraft
 
-If you follow the links on the random nerd tutorials it seems to imply that you must install python on your machine first. **You do not need python to use uPyCraft!** Just hit the links to the software installs below.
+If you follow the links on the random nerd tutorials it seems to imply that you must install python on your machine first. **You do not need python to use uPyCraft!** Just hit the links to the software installs below. They are also invluded in the repository [here](software).
 
  * [Windows](https://randomnerdtutorials.com/uPyCraftWindows) Tested on Windows 10
  * [Mac](https://randomnerdtutorials.com/uPyCraftMac) (Ensure you allow apps to be downloaded from anywhere in your system security settings)
@@ -371,7 +371,7 @@ You should see the LED flicker as the file is saved, and then flash on and off a
 
 NeoPixels are cheap addressable RGB LEDs and micropython has a library module called NeoPixel just for that.
 
-<span style="background-color:yellow">Picture of the single NeoPixel wiring</span>
+**Picture of the single NeoPixel wiring**
 
 To wire up you just connect `3.3V`(marked as `3V3` on your board) to `+` on the neopixel, `GND` (marked `GND` on your board) to `GND` on the neopixel, and `GPIO5` (marked as `D1` on your board to the `IN` or `DIN` on the neopixel. NeoPixels have got all the resistors on board so you wont need to protect your Digital pins when using them like we did in the first session. Use the `GND` and `3V3` pins that are on the same side of the board as `D1`
 
@@ -436,8 +436,6 @@ while True:
 
 Try changing the colours.
 
-Next we will loop through colours using a `for` loop
-
 #### Components
 
 Component|No.|Source|Cost|Notes
@@ -450,7 +448,8 @@ Conductive Yarn|1|Various|£1|
 Pressure Sensor|1|Various|£1|
 Conductive Rubber|1|Various|£1|
 Textile Back|1|Various|£1|
-TOTAL|||£8.63|
+Single NeoPixel|1|[AliExpress](#)|£2.50
+TOTAL|||£11.13|
 
 
 ### Session 3
@@ -466,7 +465,14 @@ Multiple Neopixel control and Re-visiting our sensor circuit but this time combi
 
 ## Mutliple NeoPixels
 
+
+
 This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html). NeoPixels get really handy when you get multiple pixels in interesting arrangements, in a row like with Jackies example circuit or in a circle, which we are going to play with today. The ESP8266 can handle quite a few without having to add any protective circuits with capacitors and resistors (remember protecting our lowly red LED?). 7 can be handled safely but big strips might need a seperate power supply. You'll have to look into this [NeoPixel Uberguide to work that out](https://learn.adafruit.com/adafruit-neopixel-uberguide/the-magic-of-neopixels) and in the final session we can talk about that and draw on wider DoESLiverpool expertise.
+
+### Wiring Up a Circular 7 Pixel NeoPixel
+
+
+**Picture of the multiple 7 pixel Circle NeoPixel wiring**
 
 ### Programming a Multi Neopixel Example
 
@@ -533,7 +539,9 @@ def clear():
 
 <img src="images/ESP8266-Schem-Fritzing.png" width="600">
 
-Ok now lets read the values of one of our sensors. Wire up following the diagram above.
+Ok now lets read the values of one of our sensors. Wire up your sensor to the `A0` pin on the board, known as `ADC 0`. It's on the other side of the board opposite `D0`, sometimes the `A0` might be obscured.
+
+<span style]"background-color:yellow"> More to Follow!</span>
 
 The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will need the ADC class to make it work
 
