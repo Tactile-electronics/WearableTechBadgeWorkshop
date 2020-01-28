@@ -537,9 +537,8 @@ def clear():
 
 ### Sensor Readings
 
-<img src="images/ESP8266-Schem-Fritzing.png" width="600">
+<img src="images/session3/ESP8266_Sensor_Fritzing.png" width="600">
 
-<img src="images/PESP8266-Schem-Fritzing.png" width="600">
 
 Ok now lets read the values of one of our sensors. Wire up your sensor to the `A0` pin on the board, known as `ADC 0`. It's on the other side of the board opposite `D0`, sometimes the `A0` might be obscured.
 
