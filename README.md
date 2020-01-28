@@ -563,7 +563,7 @@ while True:
 ### Sensor Readings
 
 
-<img src="images/session3/ESP8266_Sensor_Fritzing.png" width="600">
+<img src="images/session3/NewESP8266_Sensor.png" width="600">
 <img src="images/session3/4.jpg" width="600">
 <img src="images/session3/5.jpg" width="600">
 <img src="images/session3/6.jpg" width="600">
