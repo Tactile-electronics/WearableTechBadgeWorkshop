@@ -472,20 +472,27 @@ This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/e
 ### Wiring Up a Circular 7 Pixel NeoPixel
 
 
-**Picture of the multiple 7 pixel Circle NeoPixel wiring**
+<img src="images/session3/2.jpg" width="300">
+<img src="images/session3/3.jpg" width="300">
+<img src="images/session3/1.jpg" width="300">
+
+ * Connect the `VCC` on the NeoPixel Circle with the `3V3` pin (the one next to `D4` on the board) on the ESP8266 board
+ * Connect the `GND` on the NeoPixel Circle with the `GND` pin on the ESP8266 board
+ * Connect the `IN` on the NeoPixel Circle with the `D1` pin on the ESP8266 board
 
 ### Programming a Multi Neopixel Example
 
-Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script from our workshop page to your board.
+Add the [`lights.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/lights.py) script from our workshop page to your board. You can click on the `Raw` box on the github page to get an easily copy-able chunk of the code.
 
-Once the `lights.py` file is on board, re-boot the  board with the `RST` button and you should now be able to run these commands in the uPyCraft console window:
+Once the `lights.py` file is on board, re-boot the  board with the `RST` button and you should now be able to run these commands in the uPyCraft `>>>` console window:
 
 `cycle()`, `bounce()`, `fade()` and `clear()`
 
 There's also a [`main.py`](https://github.com/cheapjack/WearableTechBadge/blob/master/examples/circle/main.py) you can add so they run on a loop, on booting the board.
 
-Try writing your own combinations of these functions on a loop and change the for loops to cycle through colours. I've tried to comment the code to help you get the maths behind each loop as they use [basic and the lesser known math operators in python](https://codingexplained.com/coding/python/basic-math-operators-in-python). You can just hack around the numbers and see what happens!
+Try writing your own combinations of these functions on a loop and change the for loops to cycle through colours in your own `main.py`. I've tried to comment the code to help you get the maths behind each loop as they use [basic and the lesser known math operators in python](https://codingexplained.com/coding/python/basic-math-operators-in-python). You can just hack around the numbers and see what happens!
 
+## lights.py for the circle NeoPixel
 
 ```
 from machine import Pin
@@ -535,20 +542,40 @@ def clear():
     np.write()
 ```
 
+## main.py for the circle NeoPixel
+
+```
+from lights import * #import all of the things in lights.py
+import time
+
+while True:
+    fade()
+    time.sleep_ms(25)
+    clear()
+    bounce()
+    time.sleep_ms(25)
+    clear()
+    cycle()
+    time.sleep_ms(25)
+    clear()
+```
+
 ### Sensor Readings
 
+
 <img src="images/session3/ESP8266_Sensor_Fritzing.png" width="600">
+<img src="images/session3/4.jpg" width="600">
+<img src="images/session3/5.jpg" width="600">
+<img src="images/session3/6.jpg" width="600">
+<img src="images/session3/7.jpg" width="600">
 
-
-Ok now lets read the values of one of our sensors. Wire up your sensor to the `A0` pin on the board, known as `ADC 0`. It's on the other side of the board opposite `D0`, sometimes the `A0` might be obscured.
-
-<span style]"background-color:yellow"> More to Follow!</span>
+Ok now lets read the values of one of our sensors. Wire up your sensor to the `A0` pin on the board, known as `ADC 0`. It's on the other side of the board opposite `D0`, sometimes the `A0` might be obscured. Use the diagram above. The artwork is not exactly the same, but you'll notice the pin layout is identical to the boards we are using.
 
 The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will need the ADC class to make it work
 
-`from machine import ADC`
-`adc = ADC(0)`
-`adc.read()`
+So sending line-by-line messages to the board
+
+
 
 Will return a value. Ok lets get it to read the values until we press `ctrl +c`. We will use a simple loop using `while`
 
