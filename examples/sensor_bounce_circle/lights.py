@@ -18,6 +18,18 @@ def cycle():
         np.write() # write to all LEDs
         time.sleep_ms(25) # sleep for 25 microseconds
 
+def colourBounce(stretcher):
+    for i in range(4 * n):
+        for j in range(n):
+            np[j] = (0, 0, 128 - stretcher)
+        if (i // n) % 2 == 0:
+            np[i % n] = (0, 0, 0)
+        else:
+            np[n - 1 - (i % n)] = (0, 0, 0)
+        np.write()
+        time.sleep_ms(60)
+
+
 def bounce():
     for i in range(4 * n):
         for j in range(n):

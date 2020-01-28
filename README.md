@@ -467,7 +467,7 @@ Multiple Neopixel control and Re-visiting our sensor circuit but this time combi
 
 
 
-This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html). NeoPixels get really handy when you get multiple pixels in interesting arrangements, in a row like with Jackies example circuit or in a circle, which we are going to play with today. The ESP8266 can handle quite a few without having to add any protective circuits with capacitors and resistors (remember protecting our lowly red LED?). 7 can be handled safely but big strips might need a seperate power supply. You'll have to look into this [NeoPixel Uberguide to work that out](https://learn.adafruit.com/adafruit-neopixel-uberguide/the-magic-of-neopixels) and in the final session we can talk about that and draw on wider DoESLiverpool expertise.
+This is based on the [NeoPixel MicroPython Guide](https://docs.micropython.org/en/latest/esp8266/tutorial/neopixel.html). NeoPixels get really handy when you get multiple pixels in interesting arrangements, in a row like with Jackies example circuit or in a circle, which we are going to play with today. The ESP8266 can handle quite a few without having to add any protective circuits with capacitors and resistors (remember protecting our lowly red LED?). 7 can be handled safely but big strips might need a separate power supply. You'll have to look into this [NeoPixel Uberguide to work that out](https://learn.adafruit.com/adafruit-neopixel-uberguide/the-magic-of-neopixels) and in the final session we can talk about that and draw on wider DoESLiverpool expertise.
 
 ### Wiring Up a Circular 7 Pixel NeoPixel
 
@@ -538,6 +538,8 @@ def clear():
 ### Sensor Readings
 
 <img src="images/ESP8266-Schem-Fritzing.png" width="600">
+
+<img src="images/PESP8266-Schem-Fritzing.png" width="600">
 
 Ok now lets read the values of one of our sensors. Wire up your sensor to the `A0` pin on the board, known as `ADC 0`. It's on the other side of the board opposite `D0`, sometimes the `A0` might be obscured.
 

@@ -1,14 +1,12 @@
-from machine import Signal, Pin, ADC
-import time
+from machine import Signal, Pin
+from time import sleep
 
 ledPin2 = machine.Pin(2, machine.Pin.OUT)
-Led2 = Signal(ledPin2, invert=True)
-
-adc = ADC(0)
+led2 = Signal(ledPin2, invert=True)
+led2.off()
 
 while True:
-    stretch = 500 - (adc.read() *10)
-    Led2.on()
-    time.sleep_ms(stretch)
-    Led2.off()
-    time.sleep_ms(stretch)
+    led2.on()
+    sleep(0.5)
+    led2.off()
+    sleep(0.25)
