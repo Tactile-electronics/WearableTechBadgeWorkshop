@@ -407,7 +407,9 @@ Other commands you can try:
 >>> np[0] = (0, 0, 64)  # set to blue, quarter brightness
 ```
 
-Don't forget to `np.write()`
+Don't forget to always do an `np.write()` to send the signal to the NeoPixel.
+
+Handy [RGB Value Calculator](https://www.rapidtables.com/web/color/RGB_Color.html)
 
 ### Lets write a `main.py` for our NeoPixel
 
@@ -494,6 +496,8 @@ Try writing your own combinations of these functions on a loop and change the fo
 
 ## lights.py for the circle NeoPixel
 
+Handy [RGB Value Calculator](https://www.rapidtables.com/web/color/RGB_Color.html)
+
 ```
 from machine import Pin
 from neopixel import NeoPixel
@@ -560,24 +564,62 @@ while True:
     clear()
 ```
 
-### Sensor Readings
+### Session 4
 
 
-<img src="images/session3/NewESP8266_Sensor.png" width="600">
+![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
+![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
+
+Test and setup a circuit to connect our fabric sensor to the ESP8266 so it can affect our circel NeoPixel and think about how we assemble everything into a wearable badge.
+
+### Wiring Up
+
+<img src="images/session4/analog1.png" width="600">
+
+We basically make a voltage divider across GND and 3V3 using our analog sensor. We do this by connecting one leg of the sensor to 3V3 via a resistor of a value twice as high as the resistance of the sensor at rest. In the diagrams below we use 22KOhm resistor as our sensor had about 10-11KOhms resistance when we were not pressing it. The other leg of the sensor connects to GND and A0 our ADC(0) analog pin on the ESP8266. This 'divides' the voltage between a known resistance and an unknown one, ie our changing resistance of the sensor, which A0 reads for us. We'll use a breadboard initially to keep everything safely connected, but eventually you could wire up through soldering wires and a resistor together to save space.
+
+<img src="images/session4/analog2.png" height="300">
+
+Measure the resistance of your algae sensor with a multimeter. Whatever value you get approximate a resistor value of roughly twice this value. In this case, we were getting roughly 10-11KOhms so we used a 22KOhm resistor.
+
+<img src="images/session4/analog3.png" width="500">
+
+Make a jumper wire so that the third row along connects to A0 and GND when you place your ESP8266 on the breadboard. The other end of the board, VIN will connect to the last row of the breadboard
+
+<img src="images/session4/analog4.png" width="600">
+
+Position a resistor so it connects the first free row (when the ESP is on the breadboard) to the 3V3 Pin on the ESP when it is placed on the breadboard
+
+<img src="images/session4/analog5.png" width="600">
+
+Now place your ESP8266 carefully on the board, over the resistor and jumper wire.  Ensure the last pins by the usb connector connect to the last row on the breadboard. There should be spare accessible holes for each side of pins on the ESP8266 so later on you can connect your NeoPixel to D1, 3V3 & GND on that side. A0 should line up with the analog stitched sensor wire that connects to GND via the jumper wire underneath. The other leg of your sensor connects to 3V3 next to the GND via the resistor underneath.
+
+<!--
 <img src="images/session3/4.jpg" width="600">
 <img src="images/session3/5.jpg" width="600">
 <img src="images/session3/6.jpg" width="600">
 <img src="images/session3/7.jpg" width="600">
+-->
 
-Ok now lets read the values of one of our sensors. Wire up your sensor to the `A0` pin on the board, known as `ADC 0`. It's on the other side of the board opposite `D0`, sometimes the `A0` might be obscured. Use the diagram above. The artwork is not exactly the same, but you'll notice the pin layout is identical to the boards we are using.
+### Sensor Reading
 
-The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will need the ADC class to make it work
+Ok now lets read the values of our sensors.
 
-So sending line-by-line messages to the board
+The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will use the ADC object in MicroPython to make it work
 
+So sending line-by-line messages to the board will return a value. So in uPyCraft console type:
 
+`from machine import ADC`
 
-Will return a value. Ok lets get it to read the values until we press `ctrl +c`. We will use a simple loop using `while`
+`import time`
+
+`adc = ADC(0)`
+
+`adc.read()`
+
+This will give you one value.
+
+Ok lets get it to read the values until we press the `STOP` on uPyCraft. We will use a simple loop using `while`.
 
 `while True:` press return and you will see `...` and your cursor will indent automatically.
 
@@ -597,19 +639,38 @@ while True:
     time.sleep(0.5)
 ```
 
+Now you'll get a steady stream of values so have a play and see what happens and what values you get.
+You may have to try a different resistor (bigger) and see what that gives you.
+
 Now lets use that to blink our LED
 
 ```
+from machine import Signal, Pin, ADC
+import time
+
+ledPin2 = machine.Pin(2, machine.Pin.OUT)
+Led2 = Signal(ledPin2, invert=True)
+
+adc = ADC(0)
+
 while True:
     Led2.on()
-    time.sleep_ms(adc.read() * 10)
+    time.sleep_ms(adc)
     Led2.off()
-    time.sleep_ms(adc.read() * 10)
+    time.sleep_ms(adc)
 ```
 
-Ok but higher resistance, bigger stretch or pressue is slowing our flashes. WE can flip it round
+Now try this
 
 ```
+from machine import Signal, Pin, ADC
+import time
+
+ledPin2 = machine.Pin(2, machine.Pin.OUT)
+Led2 = Signal(ledPin2, invert=True)
+
+adc = ADC(0)
+
 while True:
     stretch = 500 - (adc.read() *10)
     Led2.on()
@@ -618,15 +679,13 @@ while True:
     time.sleep_ms(stretch)
 ```
 
-### Session 4
+So lets make one for the Circle NeoPixel: so have a look in the [sensor-bounce-circle directory](https://github.com/DoESLiverpool/WearableTechBadgeWorkshop/tree/master/examples/sensor_bounce_circle) and you'll find an adapted `light.py` file and a `main.py`
+
+### Putting it all together
+
+Image to follow
 
 
-![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
-![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
-
-Fabricate our amoeba shaped wearable badge and assemble everything using a textile pocket to enclose electronics
-
- * Enclose the ESP circuit in a customisable fabric template
 
 ### Additional Tutorials
 
