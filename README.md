@@ -679,11 +679,19 @@ while True:
     time.sleep_ms(stretch)
 ```
 
+You can change the numbers to adjust the response and watch how the onboard LED changes. This is all part of calibrating our sensors response.
+
+### Sensor Readings with NeoPixels
+
 So lets make one for the Circle NeoPixel: so have a look in the [sensor-bounce-circle directory](https://github.com/DoESLiverpool/WearableTechBadgeWorkshop/tree/master/examples/sensor_bounce_circle) and you'll find an adapted `light.py` file and a `main.py`
+
+Now we've got our sensor on the breadboard we will have left a column of accessible pins on the other side of the breadboard to connect our Circle NeoPixel to `D1`, `GND` & `3V3` like before.
+
+Because we are now on the breadboard you'll need to place headers into these breadboard holes next to these ESP8266 pins so that the female ends of the Circle NeoPixels can connect easily.
 
 ### Putting it all together
 
-Image to follow
+Image & Instructions to follow
 
 
 
