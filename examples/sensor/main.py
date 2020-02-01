@@ -1,13 +1,18 @@
-from machine import ADC
-import time
+from machine import Signal, Pin, ADC
+from time import sleep
+
+ledPin2 = machine.Pin(2, machine.Pin.OUT)
+Led2 = Signal(ledPin2, invert=True)
 
 adc = ADC(0)
-adc.read()
 
+val = 0
 
 while True:
-    stretch = 500 - (adc.read() *10)
+  val = adc.read()
+  print(val)
+  if val < 100:
     Led2.on()
-    time.sleep_ms(stretch)
+  else:
     Led2.off()
-    time.sleep_ms(stretch)
+  sleep(0.25)
