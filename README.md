@@ -584,7 +584,7 @@ We need to measure the resistance of our sensor at rest. Take a Multimeter from 
 
 The ESP8266 has a single pin (separate to the GPIO pins) which can be used to read analog voltages and convert them to a digital value. The values returned from the `read()` function are between `0` (for 0.0 volts) and `1024` (for 1.0 volts). This input can only tolerate a maximum of 1.0 volts and so we must use a voltage divider circuit to measure larger voltages, like the `3V` we are running through our sensor from the board.
 
-<img src="images/session4/analog2.png" height="300">
+<img src="images/session4/analog2.png" width="600">
 
 We make a voltage divider circuit across `GND` and `3V3` using our analog sensor. We do this by connecting a resistor (R1 in diagram above) **from** `3V3` to `A0` on the breadboard and then one leg of the sensor to `A0`. The resistor value should be roughly twice as high as the resistance of the sensor at rest which we made a note of earlier with the Multimeter. In the diagrams above we use a 22KOhm resistor as our sensor had about 10-11KOhms resistance when we were not pressing it.
 
