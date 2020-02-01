@@ -1,0 +1,18 @@
+from machine import Signal, Pin, ADC
+from time import sleep
+from lights import *
+
+ledPin2 = machine.Pin(2, machine.Pin.OUT)
+Led2 = Signal(ledPin2, invert=True)
+
+adc = ADC(0)
+val =50
+
+while True:
+    val = adc.read() 
+    print(val)
+    
+    if val < 40:
+      cycle()
+    else:
+      bounce()

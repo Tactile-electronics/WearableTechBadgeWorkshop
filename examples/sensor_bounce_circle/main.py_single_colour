@@ -1,0 +1,27 @@
+from machine import Signal, Pin, ADC
+from time import sleep
+from lights import *
+
+ledPin2 = machine.Pin(2, machine.Pin.OUT)
+Led2 = Signal(ledPin2, invert=True)
+
+adc = ADC(0)
+
+val = 0
+lastledOn = False
+ledOn = False
+
+while True:
+  val = adc.read()
+  if val < 40:
+    ledOn = True
+  else:
+    ledOn = False
+  #print(lastledOn)
+  if ledOn != lastledOn:
+    if ledOn == True:
+      single_colour(255, 0, 255, 5)
+    else:
+      single_colour(0, 255, 255, 5)
+    lastledOn = ledOn
+sleep(1)
