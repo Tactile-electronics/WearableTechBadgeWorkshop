@@ -572,132 +572,141 @@ while True:
 ![Skill Covered](https://img.shields.io/badge/skill-making-red.svg?longCache=true&style=plastic)
 ![Skill Covered](https://img.shields.io/badge/skill-sewing-orange.svg?longCache=true&style=plastic)
 
-Test and setup a circuit to connect our fabric sensor to the ESP8266 so it can affect our circel NeoPixel and think about how we assemble everything into a wearable badge.
+Test and setup a circuit to connect our fabric sensor to the ESP8266 so it can affect our circle NeoPixel and think about how we assemble everything into a wearable badge.
+
+### Testing
+
+We need to measure the resistance of our sensor at rest. Take a Multimeter from the Workshop and place the probes on each of the connected press studs. Turn the dial to `200Ω` and if you get no values, turn up to `20kΩ` etc until you find the resistance range. Make a note of the number and double it to get roughly the right resistor for the circuit.
 
 ### Wiring Up
 
 <img src="images/session4/analog1.png" width="600">
 
-We basically make a voltage divider across GND and 3V3 using our analog sensor. We do this by connecting one leg of the sensor to 3V3 via a resistor of a value twice as high as the resistance of the sensor at rest. In the diagrams below we use 22KOhm resistor as our sensor had about 10-11KOhms resistance when we were not pressing it. The other leg of the sensor connects to GND and A0 our ADC(0) analog pin on the ESP8266. This 'divides' the voltage between a known resistance and an unknown one, ie our changing resistance of the sensor, which A0 reads for us. We'll use a breadboard initially to keep everything safely connected, but eventually you could wire up through soldering wires and a resistor together to save space.
+The ESP8266 has a single pin (separate to the GPIO pins) which can be used to read analog voltages and convert them to a digital value. The values returned from the `read()` function are between `0` (for 0.0 volts) and `1024` (for 1.0 volts). This input can only tolerate a maximum of 1.0 volts and so we must use a voltage divider circuit to measure larger voltages, like the `3V` we are running through our sensor from the board.
 
 <img src="images/session4/analog2.png" height="300">
 
-Measure the resistance of your algae sensor with a multimeter. Whatever value you get approximate a resistor value of roughly twice this value. In this case, we were getting roughly 10-11KOhms so we used a 22KOhm resistor.
+We make a voltage divider circuit across `GND` and `3V3` using our analog sensor. We do this by connecting a resistor (R1 in diagram above) **from** `3V3` to `A0` on the breadboard and then one leg of the sensor to `A0`. The resistor value should be roughly twice as high as the resistance of the sensor at rest which we made a note of earlier with the Multimeter. In the diagrams above we use a 22KOhm resistor as our sensor had about 10-11KOhms resistance when we were not pressing it.
+
+As we change the resistance by pressure on the strands of  conductive thread, the other leg of the sensor connects to GND . This 'divides' the voltage between a known resistance and an unknown one, ie the changing resistance of our sensor, which `ADC` reads for us. We'll use a breadboard initially to keep everything safely connected, but eventually you could wire up through soldering wires and a resistor together to save space.
 
 <img src="images/session4/analog3.png" width="500">
 
-Make a jumper wire so that the third row along connects to A0 and GND when you place your ESP8266 on the breadboard. The other end of the board, VIN will connect to the last row of the breadboard
+Now place your ESP8266 carefully on the board, over the resistor. Use the middle recess of the breadboard for the resistor to sit in. Now if you ensure the last pins by the usb connector connect to the last column on the breadboard then the resistor should connect to the `3V3` row, and there should be a spare accessible hole for the other sensor leg to connect to `GND` on the breadboard.
 
-<img src="images/session4/analog4.png" width="600">
-
-Position a resistor so it connects the first free row (when the ESP is on the breadboard) to the 3V3 Pin on the ESP when it is placed on the breadboard
-
-<img src="images/session4/analog5.png" width="600">
-
-Now place your ESP8266 carefully on the board, over the resistor and jumper wire.  Ensure the last pins by the usb connector connect to the last row on the breadboard. There should be spare accessible holes for each side of pins on the ESP8266 so later on you can connect your NeoPixel to D1, 3V3 & GND on that side. A0 should line up with the analog stitched sensor wire that connects to GND via the jumper wire underneath. The other leg of your sensor connects to 3V3 next to the GND via the resistor underneath.
-
-<!--
-<img src="images/session3/4.jpg" width="600">
-<img src="images/session3/5.jpg" width="600">
-<img src="images/session3/6.jpg" width="600">
-<img src="images/session3/7.jpg" width="600">
--->
 
 ### Sensor Reading
 
 Ok now lets read the values of our sensors.
 
-The ADC (analog to digital conversion) Pin is labelled A0 on your board and we will use the ADC object in MicroPython to make it work
+The ADC (analog to digital conversion) Pin is labelled `A0` on your board and we will use the ADC object in MicroPython to make it work
 
 So sending line-by-line messages to the board will return a value. So in uPyCraft console type:
 
 `from machine import ADC`
 
-`import time`
+to get the ADC library from machine
 
 `adc = ADC(0)`
 
+initialise an ADC object on Pin `A0` and call it `adc`
+
 `adc.read()`
 
-This will give you one value.
+This will read one value and print to the console.
 
 Ok lets get it to read the values until we press the `STOP` on uPyCraft. We will use a simple loop using `while`.
 
-`while True:` press return and you will see `...` and your cursor will indent automatically.
-
-`adc.read()`
-
-Now press return, and you get another indent, return a few time indicates thats the end of that loop and it will then execute the code.
-
-Play with your sensor and watch the numbers change. Cool eh? Bit fast though, lets slow it down with `time`
-
-`import time`
-
-Now we can use `time.sleep(seconds)` to wait before reading the pin again.
+Do this by making a new `main.py` or do it line by line in the console.
 
 ```
+from machine import ADC
+from time import sleep
+
+adc = ADC(0)
+
 while True:
-    adc.read()
-    time.sleep(0.5)
+  print(adc.read())
+  sleep(0.25)
 ```
 
-Now you'll get a steady stream of values so have a play and see what happens and what values you get.
-You may have to try a different resistor (bigger) and see what that gives you.
+Play with your sensor and you'll get a steady stream of values so have a play and see what happens and what values you get. You may have to try a different resistor (bigger or smaller value) to adjust the sensitivity.
 
-Now lets use that to blink our LED
+Now lets use that to blink our LED: [main.py](examples/sensor)
+
+This is good test with the onboard LED `main.py`
 
 ```
 from machine import Signal, Pin, ADC
-import time
+from time import sleep
+
 
 ledPin2 = machine.Pin(2, machine.Pin.OUT)
 Led2 = Signal(ledPin2, invert=True)
 
 adc = ADC(0)
 
-while True:
-    Led2.on()
-    time.sleep_ms(adc)
-    Led2.off()
-    time.sleep_ms(adc)
-```
-
-Now try this
-
-```
-from machine import Signal, Pin, ADC
-import time
-
-ledPin2 = machine.Pin(2, machine.Pin.OUT)
-Led2 = Signal(ledPin2, invert=True)
-
-adc = ADC(0)
+lastledOn = False
+ledOn = False
+Led2.off()
 
 while True:
-    stretch = 500 - (adc.read() *10)
-    Led2.on()
-    time.sleep_ms(stretch)
-    Led2.off()
-    time.sleep_ms(stretch)
+  val = adc.read()
+  if val < 50: # This can be changed to suit your readings
+    ledOn = True
+  else:
+    ledOn = False
+  #print(lastledOn)
+  if ledOn != lastledOn:
+    if ledOn == True:
+      Led2.on()
+      sleep(0.1)
+    else:
+      Led2.on()
+      sleep(0.1)
+      Led2.off()
+      sleep(0.1)
+      Led2.on()
+      sleep(0.1)
+      Led2.off()
+    lastledOn = ledOn
+sleep(1)
 ```
 
-You can change the numbers to adjust the response and watch how the onboard LED changes. This is all part of calibrating our sensors response.
+Based on this example we can trigger our functions from `ligths.py`. Have a look in the [sensor-bounce-circle directory](https://github.com/DoESLiverpool/WearableTechBadgeWorkshop/tree/master/examples/sensor_bounce_circle) and you'll find adapted `light.py` and `main.py` files
 
 ### Sensor Readings with NeoPixels
 
-So lets make one for the Circle NeoPixel: so have a look in the [sensor-bounce-circle directory](https://github.com/DoESLiverpool/WearableTechBadgeWorkshop/tree/master/examples/sensor_bounce_circle) and you'll find an adapted `light.py` file and a `main.py`
 
-Now we've got our sensor on the breadboard we will have left a column of accessible pins on the other side of the breadboard to connect our Circle NeoPixel to `D1`, `GND` & `3V3` like before.
-
-Because we are now on the breadboard you'll need to place headers into these breadboard holes next to these ESP8266 pins so that the female ends of the Circle NeoPixels can connect easily.
-
-### Putting it all together
-
-Image & Instructions to follow
+<img src="images/session4/final.png" width="500">
 
 
+There should be a spare accessible hole on the other side of the ESP8266 so later on you can connect a NeoPixel to  to `D1`, `GND` & `3V3` like before.
+
+Because we are now on the breadboard you may need to place headers into these breadboard holes next to these ESP8266 pins so that the female ends of the Circle NeoPixels can connect easily.
+
+Alternatively position the ESP on the board so these pins hangover the breadboard and allow you to connect your NeoPixel, while our sensor remains connected to `3V3`, `GND` & `A0`
+
+Experiment with modifying `lights.py` and `main.py` and triggering the different functions `bounce()`, `cycle()`, `colourbounce(colour_change_factor)`, `fade()`, `clear()`  
+
+### Batteries & power
+
+We've provided a basic way of recharging and using the 600mah LiPoly batteries [like this one](https://www.ebay.co.uk/p/14016121553?iid=173743884575&rt=nc)
+
+We will be making another press stud switch so that when using the USB-B to charge our batteries, we isolate them from the ESP8266.
+
+***Warning! Charging and Using these batteries at the same time can potentially damage the ESP8266 and overheat and damage the battery. DO NOT LEAVE BATTERIES CHARGING UNATTENDED***
+
+***DoESLiverpool cannot be held responsible for battery accidents! So charging these batteries are done at your own risk***
+
+The chargers need these older style USB-B mini connectors.
+
+<img src="images/miniUSB.jpg" width="150">
 
 ### Additional Tutorials
+
+Some extra, useful info.
+
 
 ### PWM output and Controlling LEDs
 
