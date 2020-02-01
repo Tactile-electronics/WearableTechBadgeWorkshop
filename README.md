@@ -451,7 +451,9 @@ Pressure Sensor|1|Various|£1|
 Conductive Rubber|1|Various|£1|
 Textile Back|1|Various|£1|
 Single NeoPixel|1|[AliExpress](#)|£2.50
-TOTAL|||£11.13|
+Circle 7 RGB NeoPixel|1|[AliExpress](#)|£2.50
+Mini Breadboard|1|[Ebay](#)|£0.50
+TOTAL|||£14|
 
 
 ### Session 3
