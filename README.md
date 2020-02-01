@@ -632,8 +632,6 @@ while True:
 
 Play with your sensor and you'll get a steady stream of values so have a play and see what happens and what values you get. You may have to try a different resistor (bigger or smaller value) to adjust the sensitivity.
 
-Now lets use that to blink our LED: [main.py](examples/sensor)
-
 This is good test with the onboard LED `main.py`
 
 ```
@@ -673,7 +671,7 @@ while True:
 sleep(1)
 ```
 
-Based on this example we can trigger our functions from `ligths.py`. Have a look in the [sensor-bounce-circle directory](https://github.com/DoESLiverpool/WearableTechBadgeWorkshop/tree/master/examples/sensor_bounce_circle) and you'll find adapted `light.py` and `main.py` files
+Based on this example we can trigger our functions from `ligths.py`.
 
 ### Sensor Readings with NeoPixels
 
@@ -686,6 +684,8 @@ There should be a spare accessible hole on the other side of the ESP8266 so late
 Because we are now on the breadboard you may need to place headers into these breadboard holes next to these ESP8266 pins so that the female ends of the Circle NeoPixels can connect easily.
 
 Alternatively position the ESP on the board so these pins hangover the breadboard and allow you to connect your NeoPixel, while our sensor remains connected to `3V3`, `GND` & `A0`
+
+Now have a look in the [sensor-bounce-circle directory](https://github.com/DoESLiverpool/WearableTechBadgeWorkshop/tree/master/examples/sensor_bounce_circle) and you'll find adapted `light.py` and `main.py` files to interact with our sensor readings.
 
 Experiment with modifying `lights.py` and `main.py` and triggering the different functions `bounce()`, `cycle()`, `colourbounce(colour_change_factor)`, `fade()`, `clear()`  
 
