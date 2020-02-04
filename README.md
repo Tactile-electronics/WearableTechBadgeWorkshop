@@ -438,23 +438,6 @@ while True:
 
 Try changing the colours.
 
-#### Components
-
-Component|No.|Source|Cost|Notes
---|--|--|--|--
-Microusb data cable|1|Ebay|£1.20|
-NodeMcu-CP2102-ESP8266 Development Board (narrow profile)|1|[AliExpress](https://www.aliexpress.com/item/32665100123.htm)|£1.93|
-Jumper Wires|10|Ebay|£1|
-Resistor 4.7k Ohm|1|Ebay|£0.50|
-Conductive Yarn|1|Various|£1|
-Pressure Sensor|1|Various|£1|
-Conductive Rubber|1|Various|£1|
-Textile Back|1|Various|£1|
-Single NeoPixel|1|[AliExpress](#)|£2.50
-Circle 7 RGB NeoPixel|1|[AliExpress](#)|£2.50
-Mini Breadboard|1|[Ebay](#)|£0.50
-TOTAL|||£14|
-
 
 ### Session 3
 
@@ -499,6 +482,7 @@ Try writing your own combinations of these functions on a loop and change the fo
 ## lights.py for the circle NeoPixel
 
 Handy [RGB Value Calculator](https://www.rapidtables.com/web/color/RGB_Color.html)
+
 
 ```
 from machine import Pin
@@ -548,7 +532,8 @@ def clear():
     np.write()
 ```
 
-## main.py for the circle NeoPixel
+## main.py for the circle NeoPixel
+
 
 ```
 from lights import * #import all of the things in lights.py
@@ -703,9 +688,27 @@ The chargers need these older style USB-B mini connectors.
 
 <img src="images/miniUSB.jpg" width="150">
 
-### Additional Tutorials
+### ESP8266 NeoPixel Components
 
-Some extra, useful info.
+Component|No.|Source|Cost|Notes
+--|--|--|--|--
+Microusb data cable|1|Ebay|£1.20|
+NodeMcu-CP2102-ESP8266 Development Board (narrow profile)|1|[AliExpress](https://www.aliexpress.com/item/32665100123.htm)|£1.93|
+Jumper Wires|10|Ebay|£1|
+Resistor 4.7k Ohm|1|[Ebay](https://www.ebay.co.uk/itm/262374320371)|£0.007|
+Conductive Yarn|1|Various|£1?|
+Tape|1|Various|£1?|
+Conductive Rubber|1|Various|?|
+Textile Back|1|Various|£?|
+Single NeoPixel|1|[AliExpress](https://www.aliexpress.com/item/32834127593.html)|£1.17 inc 2wk shipping
+Circle 7 RGB NeoPixel|1|[Ebay](https://www.ebay.co.uk/itm/Adafruit-NeoPixel-Jewel-7-x-5050-RGB-LED-with-Integrated-Drivers-ADA2226/332322812291)|£8.60(use aliexpress link above for cheaper price!)
+Mini Breadboard|1|[Ebay](https://www.ebay.co.uk/itm/5-Pcs-SYB-170-Mini-Solderless-Breadboard-Prototype-Board-Plates-170-Tie-point-lq/123960631580)|£0.88
+TOTAL|||approx.£15|
+
+
+## Additional Tutorials
+
+Some extra, useful info, alternatives to uPyCraft, control 'normal' non-NeoPixel LEDs etc..
 
 
 ### PWM output and Controlling LEDs
@@ -735,7 +738,7 @@ Also refer to these tutorials
  * [PWM Tutorial](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#pulse-width-modulation)
  * [Fading an LED](https://docs.micropython.org/en/latest/esp8266/tutorial/pwm.html#fading-an-led)
 
-### Command Line alternatives to uPyCraft
+## Command Line alternatives to uPyCraft
 
 Once you've got used to micropython there are soem command line options for advanced users that you can see below.
 
@@ -747,9 +750,11 @@ Windows Download [PuTTY](https://putty.org/) to connect your ESP8266 to your com
 
 Open PuTTY and select `serial` and choose a COM port usually COM3 or COM7. Then change the baud rate to 115200 and leave the rest as defaults and select open. This will open a black screen with the python prompt `>>>`. You can now 'talk' to the board. Start with typing
 
+
 ```
 print("hello!")
 ```
+
 If you get hello printed on the next line you are all setup!
 
 Linux - Use the built in `screen`, `minicom` or Putty using `$ sudo apt-get install putty` in your Linux Terminal. I'd recommend screen.
@@ -771,7 +776,7 @@ is the general format.
 
 Then press enter and you'll see the python prompt. You are now connected to your ESP8266!
 
-### Making Permanent Changes
+### Making Permanent Changes Through Serial
 
 You need to make a `main.py` file on the board. To do this you need to write your code and copy it into the command line prompt of the ESP
 
@@ -800,7 +805,7 @@ Now reboot, and if your file is correct it will run the `boot.py` script (don't 
 
 ### Ampy
 
-There are other methods to upload more complex files you can look at like [ampy](https://github.com/scientifichackers/ampy) so we will try setting this up for you.
+There are other methods to upload more complex files you can look at like [ampy](https://github.com/scientifichackers/ampy)
 
  * `ampy --port /dev/MY_PORT_NAME ls` Lists files
 
