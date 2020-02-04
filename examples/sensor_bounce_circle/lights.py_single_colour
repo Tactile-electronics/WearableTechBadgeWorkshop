@@ -13,5 +13,5 @@ np.write()              # write data to all pixels
 def single_colour(r, g, b, brightness):
 
     for i in range(n):
-        np[i] = (r*brightness//100, g*brightness/100, b*brightness/100)
+        np[i] = (r*brightness//100, g*brightness//100, b*brightness//100)
     np.write() 
